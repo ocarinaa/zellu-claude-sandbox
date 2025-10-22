@@ -2,12 +2,21 @@
 Schemas para gerenciamento de conversação.
 """
 
-from typing import Literal, Optional
+from typing import Literal, Optional, TYPE_CHECKING
 from datetime import datetime
 from pydantic import BaseModel, Field
 
 # Type alias para tom de voz
 ToneType = Literal["conciliador", "formal", "tecnico"]
+
+# Import ExtractedInfo from core (for graph state tracking)
+if TYPE_CHECKING:
+    from ..core import ExtractedInfo
+else:
+    try:
+        from ..core import ExtractedInfo
+    except ImportError:
+        ExtractedInfo = None
 
 
 class Message(BaseModel):
@@ -90,6 +99,9 @@ class ConversationState(BaseModel):
     analysis_data: Optional[AnalysisData] = None
     created_at: datetime = Field(default_factory=datetime.now)
     updated_at: datetime = Field(default_factory=datetime.now)
+
+    # NOVO: Informações extraídas pelo grafo LangGraph
+    extracted_info: Optional["ExtractedInfo"] = None
 
     @property
     def message_count(self) -> int:

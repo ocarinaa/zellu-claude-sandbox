@@ -1,5 +1,5 @@
 """
-Conversation Manager com persistência integrada.
+Conversation Manager com LangGraph integrado.
 """
 
 from typing import Optional, AsyncIterator
@@ -12,6 +12,15 @@ from ..cache import SessionCache
 from .schemas import Message, ConversationState, AnalysisData, ToneType
 from .extractor import extract_analysis_data
 
+# Importa LangGraph
+try:
+    from ..core import compile_conversation_graph, ConversationGraphState, ExtractedInfo
+    LANGGRAPH_AVAILABLE = True
+except ImportError:
+    LANGGRAPH_AVAILABLE = False
+    logger_import = __import__('logging').getLogger(__name__)
+    logger_import.warning("[IMPORT] LangGraph não disponível, usando modo fallback")
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -19,13 +28,14 @@ logger = logging.getLogger(__name__)
 
 class ConversationManager:
     """
-    Gerencia conversas com IA incluindo persistência.
+    Gerencia conversas com IA usando LangGraph.
 
     Fluxo:
     1. Busca no Redis (cache rápido)
     2. Se não encontrar, busca no PostgreSQL
     3. Se não encontrar, cria nova
     4. Sempre atualiza Redis após operações
+    5. Usa LangGraph para orquestrar coleta de informações
     """
 
     def __init__(
@@ -41,6 +51,18 @@ class ConversationManager:
         self.message_repo = message_repo
         self.cache_repo = cache_repo
         self.session_cache = session_cache
+
+        # Inicializa grafo se disponível
+        if LANGGRAPH_AVAILABLE:
+            try:
+                self.graph = compile_conversation_graph()
+                logger.info("[GRAPH] LangGraph compilado e pronto")
+            except Exception as e:
+                logger.error(f"[GRAPH] Erro ao compilar grafo: {e}")
+                self.graph = None
+        else:
+            self.graph = None
+            logger.warning("[GRAPH] LangGraph não disponível, usando modo fallback")
 
     async def start_conversation(
         self,
@@ -131,39 +153,68 @@ class ConversationManager:
         user_message: str,
     ) -> str:
         """
-        Gera resposta da IA e persiste.
+        Gera resposta da IA usando LangGraph.
+
+        Args:
+            chat_id: ID da conversa
+            user_message: Mensagem do usuário
+
+        Returns:
+            Resposta da IA
         """
-        # Adiciona mensagem do usuário
+        # Se grafo não está disponível, usa fallback
+        if not self.graph:
+            logger.warning(f"[FALLBACK] Grafo não disponível para {chat_id}")
+            return await self._generate_response_fallback(chat_id, user_message)
+
+        logger.info(f"[GRAPH] Processando mensagem com LangGraph para {chat_id}")
+
+        # 1. Adiciona mensagem do usuário
         state = await self.add_user_message(chat_id, user_message)
 
-        # Prepara mensagens para LLM
-        messages = [
-            {"role": msg.role, "content": msg.content}
-            for msg in state.messages
+        # 2. Converte state do manager → state do grafo
+        graph_state = self._convert_to_graph_state(state)
+
+        # 3. Executa grafo
+        try:
+            result = await self.graph.ainvoke(graph_state)
+            logger.info(f"[GRAPH] Grafo executado com sucesso para {chat_id}")
+        except Exception as e:
+            logger.error(f"[GRAPH] Erro ao executar grafo: {e}")
+            # Fallback para lógica anterior (sem grafo)
+            return await self._generate_response_fallback(chat_id, user_message)
+
+        # 4. Extrai resposta (última mensagem do assistant)
+        assistant_messages = [
+            msg for msg in result["messages"]
+            if msg["role"] == "assistant"
         ]
 
-        # Gera resposta
-        system_prompt = get_system_prompt(state.tone)
-        response = self.llm.chat(
-            messages=messages,
-            system=system_prompt,
-        )
+        if not assistant_messages:
+            logger.error(f"[GRAPH] Nenhuma resposta gerada pelo grafo")
+            return await self._generate_response_fallback(chat_id, user_message)
 
-        # Adiciona resposta ao estado
+        response = assistant_messages[-1]["content"]
+
+        # 5. Persiste resposta
         assistant_msg = Message(role="assistant", content=response)
         state.messages.append(assistant_msg)
 
-        # Persiste no banco
         await self.conversation_repo.add_message(
             chat_id=chat_id,
             role="assistant",
             content=response,
         )
 
-        # Atualiza cache
+        # 6. Atualiza state com extracted_info
+        state.extracted_info = result["extracted_info"]
+
+        # 7. Atualiza cache
         await self.session_cache.set(chat_id, state.model_dump())
 
-        logger.info(f"[AI RESPONSE] Resposta gerada e persistida para {chat_id}")
+        logger.info(f"[GRAPH] Resposta gerada e persistida para {chat_id}")
+        logger.info(f"[GRAPH] Confidence score: {result['extracted_info'].confidence_score:.2f}")
+
         return response
 
     async def generate_response_stream(
@@ -172,29 +223,61 @@ class ConversationManager:
         user_message: str,
     ) -> AsyncIterator[str]:
         """
-        Gera resposta da IA em streaming e persiste ao final.
+        Gera resposta em streaming (NOTA: LangGraph não suporta streaming nativo).
+
+        Por enquanto, executa o grafo completo e simula streaming da resposta.
+
+        Args:
+            chat_id: ID da conversa
+            user_message: Mensagem do usuário
+
+        Yields:
+            Chunks da resposta
         """
-        # Adiciona mensagem do usuário
+        # Se grafo não está disponível, usa fallback
+        if not self.graph:
+            logger.warning(f"[FALLBACK STREAM] Grafo não disponível para {chat_id}")
+            async for chunk in self._generate_response_stream_fallback(chat_id, user_message):
+                yield chunk
+            return
+
+        logger.info(f"[GRAPH STREAM] Processando com LangGraph para {chat_id}")
+
+        # 1. Adiciona mensagem do usuário
         state = await self.add_user_message(chat_id, user_message)
 
-        # Prepara mensagens
-        messages = [
-            {"role": msg.role, "content": msg.content}
-            for msg in state.messages
+        # 2. Converte state
+        graph_state = self._convert_to_graph_state(state)
+
+        # 3. Executa grafo (completo)
+        try:
+            result = await self.graph.ainvoke(graph_state)
+        except Exception as e:
+            logger.error(f"[GRAPH STREAM] Erro: {e}")
+            # Fallback
+            async for chunk in self._generate_response_stream_fallback(chat_id, user_message):
+                yield chunk
+            return
+
+        # 4. Extrai resposta
+        assistant_messages = [
+            msg for msg in result["messages"]
+            if msg["role"] == "assistant"
         ]
 
-        # Streaming
-        system_prompt = get_system_prompt(state.tone)
-        full_response = ""
+        if not assistant_messages:
+            logger.error(f"[GRAPH STREAM] Nenhuma resposta gerada")
+            return
 
-        for chunk in self.llm.chat_stream(
-            messages=messages,
-            system=system_prompt,
-        ):
-            full_response += chunk
+        full_response = assistant_messages[-1]["content"]
+
+        # 5. Simula streaming (chunk por chunk)
+        chunk_size = 10  # caracteres por chunk
+        for i in range(0, len(full_response), chunk_size):
+            chunk = full_response[i:i + chunk_size]
             yield chunk
 
-        # Persiste resposta completa
+        # 6. Persiste resposta completa
         assistant_msg = Message(role="assistant", content=full_response)
         state.messages.append(assistant_msg)
 
@@ -204,23 +287,40 @@ class ConversationManager:
             content=full_response,
         )
 
-        # Atualiza cache
+        # 7. Atualiza state
+        state.extracted_info = result["extracted_info"]
         await self.session_cache.set(chat_id, state.model_dump())
 
-        logger.info(f"[STREAM COMPLETE] Resposta streaming persistida para {chat_id}")
+        logger.info(f"[GRAPH STREAM] Resposta completa persistida para {chat_id}")
 
     async def should_finish(self, chat_id: str) -> bool:
         """
         Decide se deve finalizar conversa.
 
-        Critérios:
-        - Usuário confirmou que deu todas informações
-        - 7+ mensagens com dados suficientes
-        - IA detecta que tem info suficiente
+        Agora delega a decisão para o grafo (decider_node).
         """
         state = await self.start_conversation(chat_id)
 
-        # Mínimo 3 trocas (6 mensagens)
+        # Se state tem extracted_info, usa decisão do grafo
+        if state.extracted_info:
+            extracted = state.extracted_info
+
+            # Critérios do decider_node
+            MIN_TURNS = 3
+            MIN_CONFIDENCE = 0.7
+
+            if len(state.messages) < (MIN_TURNS * 2):
+                return False
+
+            if extracted.missing_fields:
+                return False
+
+            if extracted.confidence_score < MIN_CONFIDENCE:
+                return False
+
+            return True
+
+        # Fallback: lógica anterior
         if len(state.messages) < 6:
             return False
 
@@ -262,36 +362,53 @@ Responda APENAS: SIM ou NAO"""
         chat_id: str,
     ) -> AnalysisData:
         """
-        Finaliza conversa e gera análise completa.
+        Finaliza conversa e gera análise.
+
+        Usa o finisher_node do grafo se possível.
         """
+        logger.info(f"[FINISH] Finalizando conversa {chat_id}")
+
         state = await self.start_conversation(chat_id)
 
-        # Prepara mensagens
-        messages = [
-            {"role": msg.role, "content": msg.content}
-            for msg in state.messages
-        ]
+        # Se state já tem analysis_data (do grafo ou anterior), usa
+        if state.analysis_data:
+            logger.info(f"[FINISH] Usando analysis_data existente")
+            analysis_data = state.analysis_data
+        else:
+            # Se grafo está disponível e state tem extracted_info
+            if self.graph and state.extracted_info:
+                logger.info(f"[FINISH] Forçando execução completa do grafo")
 
-        # Gera análise
-        finalization_prompt = get_finalization_prompt()
-        response = self.llm.chat(
-            messages=messages,
-            system=finalization_prompt,
-        )
+                graph_state = self._convert_to_graph_state(state)
+                graph_state["should_finish"] = True
+                graph_state["current_step"] = "analyze"
 
-        # Extrai JSON
-        analysis_data = extract_analysis_data(response)
+                try:
+                    result = await self.graph.ainvoke(graph_state)
 
-        # Persiste no banco
+                    if "analysis_data" in result and result["analysis_data"]:
+                        analysis_data = AnalysisData(**result["analysis_data"])
+                    else:
+                        # Fallback: usa método anterior
+                        logger.warning(f"[FINISH] Grafo não gerou analysis_data, usando fallback")
+                        analysis_data = await self._finish_conversation_fallback(state)
+                except Exception as e:
+                    logger.error(f"[FINISH] Erro ao executar grafo: {e}")
+                    analysis_data = await self._finish_conversation_fallback(state)
+            else:
+                # Fallback completo
+                logger.warning(f"[FINISH] Usando fallback (sem grafo)")
+                analysis_data = await self._finish_conversation_fallback(state)
+
+        # Persiste
         await self.conversation_repo.finish_conversation(
             chat_id=chat_id,
             analysis_data=analysis_data.model_dump(),
         )
 
-        # Remove do cache (finalizada)
         await self.session_cache.delete(chat_id)
 
-        logger.info(f"[FINISHED] Conversa {chat_id} finalizada com análise completa")
+        logger.info(f"[FINISH] Conversa {chat_id} finalizada")
         return analysis_data
 
     async def get_conversation_history(
@@ -312,3 +429,110 @@ Responda APENAS: SIM ou NAO"""
             is_finalized=db_conversation.is_finished,
             analysis_data=AnalysisData(**db_conversation.analysis_data) if db_conversation.analysis_data else None,
         )
+
+    # === MÉTODOS AUXILIARES ===
+
+    def _convert_to_graph_state(self, state: ConversationState) -> ConversationGraphState:
+        """
+        Converte state do manager para state do grafo.
+        """
+        if not LANGGRAPH_AVAILABLE:
+            raise RuntimeError("LangGraph não disponível")
+
+        return ConversationGraphState(
+            messages=[
+                {"role": msg.role, "content": msg.content}
+                for msg in state.messages
+            ],
+            extracted_info=state.extracted_info if state.extracted_info else ExtractedInfo(),
+            current_step="collect",
+            should_finish=False,
+            tone=state.tone,
+            chat_id=state.conversation_id,
+            turn_count=len(state.messages) // 2,
+        )
+
+    async def _generate_response_fallback(self, chat_id: str, user_message: str) -> str:
+        """Fallback: gera resposta sem usar grafo."""
+        logger.warning(f"[FALLBACK] Usando lógica anterior sem grafo")
+
+        state = await self.add_user_message(chat_id, user_message)
+
+        messages = [
+            {"role": msg.role, "content": msg.content}
+            for msg in state.messages
+        ]
+
+        system_prompt = get_system_prompt(state.tone)
+        response = self.llm.chat(
+            messages=messages,
+            system=system_prompt,
+        )
+
+        assistant_msg = Message(role="assistant", content=response)
+        state.messages.append(assistant_msg)
+
+        await self.conversation_repo.add_message(
+            chat_id=chat_id,
+            role="assistant",
+            content=response,
+        )
+
+        await self.session_cache.set(chat_id, state.model_dump())
+
+        return response
+
+    async def _generate_response_stream_fallback(
+        self,
+        chat_id: str,
+        user_message: str
+    ) -> AsyncIterator[str]:
+        """Fallback: streaming sem grafo."""
+        logger.warning(f"[FALLBACK STREAM] Usando lógica anterior")
+
+        state = await self.add_user_message(chat_id, user_message)
+
+        messages = [
+            {"role": msg.role, "content": msg.content}
+            for msg in state.messages
+        ]
+
+        system_prompt = get_system_prompt(state.tone)
+        full_response = ""
+
+        for chunk in self.llm.chat_stream(
+            messages=messages,
+            system=system_prompt,
+        ):
+            full_response += chunk
+            yield chunk
+
+        assistant_msg = Message(role="assistant", content=full_response)
+        state.messages.append(assistant_msg)
+
+        await self.conversation_repo.add_message(
+            chat_id=chat_id,
+            role="assistant",
+            content=full_response,
+        )
+
+        await self.session_cache.set(chat_id, state.model_dump())
+
+    async def _finish_conversation_fallback(self, state: ConversationState) -> AnalysisData:
+        """Fallback: finaliza sem grafo."""
+        logger.warning(f"[FALLBACK FINISH] Usando lógica anterior")
+
+        messages = [
+            {"role": msg.role, "content": msg.content}
+            for msg in state.messages
+        ]
+
+        finalization_prompt = get_finalization_prompt()
+        response = self.llm.chat(
+            messages=messages,
+            system=finalization_prompt,
+        )
+
+        analysis_data = extract_analysis_data(response)
+
+        return analysis_data
