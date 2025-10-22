@@ -3,9 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 from .settings import get_settings
 from .schemas import WebhookInput, WebhookResponse, AnalysisData, Recommendation
+from ..api.routes import conversation
 
 settings = get_settings()
-app = FastAPI(title=settings.APP_NAME, version=settings.APP_VERSION)
+app = FastAPI(
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION,
+    description="Zellu - Assistente Jurídica com IA Conversacional",
+)
 
 # CORS
 app.add_middleware(
@@ -55,3 +60,7 @@ def webhook_prod(payload: WebhookInput, _=Depends(require_api_key)):
 @app.get("/_debug/routes")
 def list_routes():
     return sorted([r.path for r in app.router.routes])
+
+
+# === AI Conversation Routes ===
+app.include_router(conversation.router, prefix="/api/v1")
