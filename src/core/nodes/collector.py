@@ -33,6 +33,36 @@ async def collector_node(
     # Pega última mensagem do usuário
     last_user_message = state["messages"][-1]["content"]
 
+    # Detecta se última mensagem é sobre documento
+    if "📄 Documento enviado:" in last_user_message:
+        logger.info("[COLLECTOR] Documento detectado, processando informações")
+
+        # IA já recebeu resumo do documento, apenas extrai informações adicionais
+        extracted = await _extract_structured_info(
+            state["messages"],
+            state["extracted_info"],
+            llm_client,
+        )
+
+        # Marca que possui documentos
+        extracted.has_documents = True
+
+        state["extracted_info"] = extracted
+
+        # Gera resposta curta reconhecendo documento
+        response = "Recebi seu documento! Vou analisar as informações. " \
+                   "Há mais alguma coisa que você gostaria de adicionar sobre seu caso?"
+
+        state["messages"].append({
+            "role": "assistant",
+            "content": response,
+        })
+
+        state["turn_count"] += 1
+        state["current_step"] = "validate"
+
+        return state
+
     # System prompt com foco em extração
     extraction_prompt = f"""{get_system_prompt(state['tone'])}
 

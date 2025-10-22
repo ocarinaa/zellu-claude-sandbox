@@ -2,17 +2,20 @@
 Endpoints REST com persistência.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
 import json
 import logging
+import mimetypes
 
 from ..database import get_db, ConversationRepository, MessageRepository, AnalysisCacheRepository
 from ..cache import SessionCache
 from ..llm import LLMClient
 from ..conversation import ConversationManager
+from ..storage import LocalStorage, FileValidator
+from ..ocr import PDFExtractor, ImageOCR, DocumentAnalyzer
 
 logger = logging.getLogger(__name__)
 
@@ -91,7 +94,103 @@ async def get_conversation_manager(
     )
 
 
+def get_storage() -> LocalStorage:
+    """Dependency: Local Storage."""
+    return LocalStorage()
+
+
 # === ENDPOINTS ===
+
+@router.post("/upload")
+async def upload_file(
+    chat_id: str,
+    file: UploadFile = File(...),
+    storage: LocalStorage = Depends(get_storage),
+    manager: ConversationManager = Depends(get_conversation_manager),
+):
+    """
+    Upload de arquivo para análise.
+
+    Args:
+        chat_id: ID da conversa
+        file: Arquivo enviado
+        storage: Storage local
+        manager: Conversation Manager
+    """
+    try:
+        logger.info(f"[UPLOAD] Recebendo arquivo: {file.filename}")
+
+        # 1. Lê conteúdo
+        content = await file.read()
+
+        # 2. Valida
+        is_valid, error = FileValidator.validate(file.filename, content)
+        if not is_valid:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=error,
+            )
+
+        # 3. Sanitiza nome
+        safe_name = FileValidator.sanitize_filename(file.filename)
+
+        # 4. Salva
+        relative_path = await storage.save(safe_name, content, chat_id)
+        full_path = storage.get_full_path(relative_path)
+
+        # 5. Extrai texto (se aplicável)
+        mime_type = mimetypes.guess_type(file.filename)[0] or ""
+        extracted_text = ""
+
+        if mime_type == "application/pdf":
+            extracted_text = await PDFExtractor.extract_text(full_path)
+        elif mime_type.startswith("image/"):
+            extracted_text = await ImageOCR.extract_text(full_path)
+
+        # 6. Analisa com IA (se extraiu texto)
+        analysis = None
+        if extracted_text:
+            llm_client = get_llm_client()
+            analyzer = DocumentAnalyzer(llm_client)
+
+            # Busca contexto da conversa
+            state = await manager.start_conversation(chat_id)
+            context = "\n".join([f"{m.role}: {m.content}" for m in state.messages[-5:]])
+
+            analysis = await analyzer.analyze(extracted_text, context)
+
+        # 7. Adiciona ao state (via mensagem especial)
+        document_summary = f"📄 Documento enviado: {safe_name}\n"
+        if analysis:
+            document_summary += f"Tipo: {analysis['document_type']}\n"
+            document_summary += f"Resumo: {analysis['summary']}\n"
+            if analysis.get('key_information'):
+                document_summary += "Informações relevantes:\n"
+                for info in analysis['key_information'][:3]:
+                    document_summary += f"  • {info}\n"
+
+        await manager.add_user_message(chat_id, document_summary)
+
+        logger.info(f"[UPLOAD] ✅ Arquivo processado: {safe_name}")
+
+        return {
+            "success": True,
+            "filename": safe_name,
+            "path": relative_path,
+            "size": len(content),
+            "mime_type": mime_type,
+            "extracted_text_length": len(extracted_text) if extracted_text else 0,
+            "analysis": analysis,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"[UPLOAD] Erro: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Erro ao processar arquivo: {str(e)}",
+        )
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(
