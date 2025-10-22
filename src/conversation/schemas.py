@@ -6,6 +6,9 @@ from typing import Literal, Optional
 from datetime import datetime
 from pydantic import BaseModel, Field
 
+# Type alias para tom de voz
+ToneType = Literal["conciliador", "formal", "tecnico"]
+
 
 class Message(BaseModel):
     """Representa uma mensagem na conversa."""
