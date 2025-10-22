@@ -12,3 +12,4 @@ sqlalchemy[asyncio]==2.0.23
 asyncpg==0.29.0
 alembic==1.13.1
 redis[hiredis]==5.0.1
+langgraph==0.0.20
