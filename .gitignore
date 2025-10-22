@@ -12,3 +12,9 @@ build/
 *.sqlite3
 *.db
 .DS_Store
+
+# Test coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
