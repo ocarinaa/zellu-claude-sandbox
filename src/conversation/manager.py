@@ -432,7 +432,7 @@ Responda APENAS: SIM ou NAO"""
 
     # === MÉTODOS AUXILIARES ===
 
-    def _convert_to_graph_state(self, state: ConversationState) -> ConversationGraphState:
+    def _convert_to_graph_state(self, state: ConversationState) -> "ConversationGraphState":
         """
         Converte state do manager para state do grafo.
         """
