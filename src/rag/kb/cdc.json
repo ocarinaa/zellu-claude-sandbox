@@ -1,0 +1,74 @@
+{
+  "articles": [
+    {
+      "number": "6",
+      "title": "Direitos Básicos do Consumidor",
+      "content": "São direitos básicos do consumidor: I - a proteção da vida, saúde e segurança; II - a educação e divulgação sobre o consumo adequado; III - a informação adequada e clara; IV - a proteção contra publicidade enganosa; V - a modificação das cláusulas contratuais; VI - a efetiva prevenção e reparação de danos.",
+      "keywords": ["direitos básicos", "proteção", "segurança", "informação", "reparação"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "14",
+      "title": "Produto ou Serviço com Defeito",
+      "content": "O fornecedor de serviços responde, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos relativos à prestação dos serviços, bem como por informações insuficientes ou inadequadas sobre sua fruição e riscos.",
+      "keywords": ["defeito", "serviço", "responsabilidade", "reparação", "danos"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "18",
+      "title": "Produto ou Serviço Impróprio",
+      "content": "Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam.",
+      "keywords": ["vício", "qualidade", "produto impróprio", "inadequado"],
+      "category": "vicios_qualidade"
+    },
+    {
+      "number": "20",
+      "title": "Vício do Produto ou Serviço",
+      "content": "O fornecedor de serviços responde pelos vícios de qualidade que os tornem impróprios ao consumo ou lhes diminuam o valor, assim como por aqueles decorrentes da disparidade com as indicações constantes da oferta ou mensagem publicitária.",
+      "keywords": ["vício", "serviço", "impróprio", "valor diminuído", "oferta"],
+      "category": "vicios_qualidade"
+    },
+    {
+      "number": "35",
+      "title": "Informações Obrigatórias",
+      "content": "Se o fornecedor de produtos ou serviços recusar cumprimento à oferta, apresentação ou publicidade, o consumidor poderá, alternativamente e à sua livre escolha: I - exigir o cumprimento forçado da obrigação; II - aceitar outro produto ou prestação de serviço equivalente; III - rescindir o contrato, com direito à restituição de quantia eventualmente antecipada.",
+      "keywords": ["oferta", "publicidade", "descumprimento", "restituição"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "39",
+      "title": "Cláusulas Abusivas",
+      "content": "É vedado ao fornecedor de produtos ou serviços: I - condicionar o fornecimento de produto ou de serviço ao fornecimento de outro produto ou serviço; II - recusar atendimento às demandas dos consumidores; III - enviar ou entregar ao consumidor, sem solicitação prévia, qualquer produto, ou fornecer qualquer serviço.",
+      "keywords": ["cláusula abusiva", "venda casada", "recusa", "produto não solicitado"],
+      "category": "praticas_abusivas"
+    },
+    {
+      "number": "42",
+      "title": "Cobrança Indevida",
+      "content": "Na cobrança de débitos, o consumidor inadimplente não será exposto a ridículo, nem será submetido a qualquer tipo de constrangimento ou ameaça. Parágrafo único: O consumidor cobrado em quantia indevida tem direito à repetição do indébito, por valor igual ao dobro do que pagou em excesso, acrescido de correção monetária e juros legais.",
+      "keywords": ["cobrança indevida", "devolução em dobro", "repetição indébito", "constrangimento"],
+      "category": "cobranca"
+    },
+    {
+      "number": "49",
+      "title": "Direito de Arrependimento",
+      "content": "O consumidor pode desistir do contrato, no prazo de 7 dias a contar de sua assinatura ou do ato de recebimento do produto ou serviço, sempre que a contratação de fornecimento de produtos e serviços ocorrer fora do estabelecimento comercial, especialmente por telefone ou a domicílio.",
+      "keywords": ["arrependimento", "7 dias", "cancelamento", "fora do estabelecimento"],
+      "category": "arrependimento"
+    },
+    {
+      "number": "51",
+      "title": "Cláusulas Nulas de Pleno Direito",
+      "content": "São nulas de pleno direito as cláusulas contratuais relativas ao fornecimento de produtos e serviços que: I - impossibilitem, exonerem ou atenuem a responsabilidade do fornecedor; II - subtraiam ao consumidor a opção de reembolso da quantia já paga; IV - estabeleçam obrigações consideradas iníquas, abusivas, que coloquem o consumidor em desvantagem exagerada.",
+      "keywords": ["cláusula nula", "abusiva", "desvantagem", "iníqua"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "71",
+      "title": "Publicidade Enganosa ou Abusiva",
+      "content": "Utilizar, na cobrança de dívidas, de ameaça, coação, constrangimento físico ou moral, afirmações falsas incorretas ou enganosas ou de qualquer outro procedimento que exponha o consumidor, injustificadamente, a ridículo ou interfira com seu trabalho, descanso ou lazer.",
+      "keywords": ["cobrança abusiva", "ameaça", "coação", "constrangimento"],
+      "category": "cobranca"
+    }
+  ]
+}

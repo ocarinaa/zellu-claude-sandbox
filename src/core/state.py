@@ -67,6 +67,9 @@ class ConversationGraphState(TypedDict):
     user_name: Optional[str]
     turn_count: int  # Número de trocas de mensagens
 
+    # RAG - Artigos CDC relevantes (adicionado na FASE 4C)
+    relevant_cdc_articles: Optional[List[dict]]  # [{"number": "42", "title": "...", "content": "...", "similarity_score": 0.95}, ...]
+
 
 # Tipos úteis
 NodeName = Literal["collector", "validator", "decider", "analyzer", "finisher"]
