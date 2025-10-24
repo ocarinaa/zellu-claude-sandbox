@@ -78,7 +78,7 @@ Uma IA conversacional que:
 - ✅ **Retrocompatibilidade:** Fallback para modo não-LangGraph
 
 ### 📚 RAG + CDC (FASE 4C)
-- ✅ **Knowledge Base CDC:** 10 artigos essenciais estruturados (JSON)
+- ✅ **Knowledge Base CDC:** 60 artigos essenciais estruturados (JSON) em 11 categorias
 - ✅ **Embeddings:** OpenAI text-embedding-3-small (1536 dimensões)
 - ✅ **Vector Store:** FAISS IndexFlatL2 para busca por similaridade
 - ✅ **Retriever Semântico:** Top-K artigos com scores de relevância
@@ -752,7 +752,7 @@ zellu-claude-sandbox/
 │   │   ├── retriever.py        # CDCRetriever (singleton)
 │   │   ├── vector_store.py     # FAISS vector store
 │   │   └── kb/                 # Knowledge base
-│   │       └── cdc.json        # 10 artigos CDC estruturados
+│   │       └── cdc.json        # 60 artigos CDC estruturados
 │   │
 │   ├── storage/                # File storage + validação (FASE 4E)
 │   │   ├── __init__.py
@@ -953,13 +953,13 @@ asyncio.run(rebuild())
 - [x] REST API completa
 - [x] Persistência PostgreSQL + Redis
 - [x] LangGraph state machine (5 nós)
-- [x] RAG com CDC (10 artigos)
+- [x] RAG com CDC (60 artigos em 11 categorias)
 - [x] Heurísticas de cálculo
 - [x] Upload + OCR
 - [x] Suite de testes (48% coverage)
 
 ### 🚧 Curto Prazo (v1.1 - 1-2 semanas)
-- [ ] **Expansão CDC:** 10 → 50+ artigos essenciais
+- [x] **Expansão CDC:** 10 → 60 artigos essenciais ✅ **CONCLUÍDO**
 - [ ] **Melhorias de testes:** Coverage 48% → 70%+
 - [ ] **Performance:** Cache de embeddings, otimização de queries
 - [ ] **Monitoring:** Logs estruturados, métricas Prometheus

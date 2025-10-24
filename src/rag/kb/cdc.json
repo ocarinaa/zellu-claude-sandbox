@@ -1,74 +1,424 @@
 {
   "articles": [
     {
+      "number": "4",
+      "title": "Política Nacional das Relações de Consumo",
+      "content": "A Política Nacional das Relações de Consumo tem por objetivo o atendimento das necessidades dos consumidores, o respeito à sua dignidade, saúde e segurança, a proteção de seus interesses econômicos, a melhoria da sua qualidade de vida, bem como a transparência e harmonia das relações de consumo.",
+      "keywords": ["política nacional", "dignidade", "transparência", "qualidade de vida"],
+      "category": "principios_gerais"
+    },
+    {
       "number": "6",
       "title": "Direitos Básicos do Consumidor",
-      "content": "São direitos básicos do consumidor: I - a proteção da vida, saúde e segurança; II - a educação e divulgação sobre o consumo adequado; III - a informação adequada e clara; IV - a proteção contra publicidade enganosa; V - a modificação das cláusulas contratuais; VI - a efetiva prevenção e reparação de danos.",
-      "keywords": ["direitos básicos", "proteção", "segurança", "informação", "reparação"],
+      "content": "São direitos básicos do consumidor: I - a proteção da vida, saúde e segurança; II - a educação e divulgação sobre o consumo adequado; III - a informação adequada e clara sobre os diferentes produtos e serviços; IV - a proteção contra a publicidade enganosa e abusiva; V - a modificação das cláusulas contratuais; VI - a efetiva prevenção e reparação de danos patrimoniais e morais; VII - o acesso aos órgãos judiciários e administrativos; VIII - a facilitação da defesa de seus direitos.",
+      "keywords": ["direitos básicos", "proteção", "segurança", "informação", "reparação", "acesso à justiça"],
       "category": "direitos_fundamentais"
     },
     {
+      "number": "7",
+      "title": "Direitos Coletivos",
+      "content": "Os direitos previstos neste código não excluem outros decorrentes de tratados ou convenções internacionais de que o Brasil seja signatário, da legislação interna ordinária, de regulamentos expedidos pelas autoridades administrativas competentes, bem como dos que derivem dos princípios gerais do direito, analogia, costumes e equidade.",
+      "keywords": ["direitos coletivos", "tratados internacionais", "princípios gerais"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "8",
+      "title": "Produtos e Serviços Nocivos ou Perigosos",
+      "content": "Os produtos e serviços colocados no mercado de consumo não acarretarão riscos à saúde ou segurança dos consumidores, exceto os considerados normais e previsíveis em decorrência de sua natureza e fruição, obrigando-se os fornecedores, em qualquer hipótese, a dar as informações necessárias e adequadas a seu respeito.",
+      "keywords": ["produto perigoso", "segurança", "informação de risco", "nocivo"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "9",
+      "title": "Informação sobre Periculosidade",
+      "content": "O fornecedor de produtos e serviços potencialmente nocivos ou perigosos à saúde ou segurança deverá informar, de maneira ostensiva e adequada, a respeito da sua nocividade ou periculosidade, sem prejuízo da adoção de outras medidas cabíveis em cada caso concreto.",
+      "keywords": ["periculosidade", "informação ostensiva", "nocividade", "advertência"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "10",
+      "title": "Recall de Produtos",
+      "content": "O fornecedor não poderá colocar no mercado de consumo produto ou serviço que sabe ou deveria saber apresentar alto grau de nocividade ou periculosidade à saúde ou segurança. O fornecedor de produtos e serviços que, posteriormente à sua introdução no mercado de consumo, tiver conhecimento da periculosidade que apresentem, deverá comunicar o fato imediatamente às autoridades competentes e aos consumidores, mediante anúncios publicitários.",
+      "keywords": ["recall", "retirada do mercado", "comunicação", "produto perigoso"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "12",
+      "title": "Responsabilidade pelo Fato do Produto",
+      "content": "O fabricante, o produtor, o construtor, nacional ou estrangeiro, e o importador respondem, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos decorrentes de projeto, fabricação, construção, montagem, fórmulas, manipulação, apresentação ou acondicionamento de seus produtos, bem como por informações insuficientes ou inadequadas sobre sua utilização e riscos.",
+      "keywords": ["responsabilidade objetiva", "fato do produto", "defeito", "fabricante", "importador"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "13",
+      "title": "Responsabilidade do Comerciante",
+      "content": "O comerciante é igualmente responsável, quando: I - o fabricante, o construtor, o produtor ou o importador não puderem ser identificados; II - o produto for fornecido sem identificação clara do seu fabricante, produtor, construtor ou importador; III - não conservar adequadamente os produtos perecíveis.",
+      "keywords": ["comerciante", "responsabilidade solidária", "identificação", "produto perecível"],
+      "category": "responsabilidade"
+    },
+    {
       "number": "14",
-      "title": "Produto ou Serviço com Defeito",
-      "content": "O fornecedor de serviços responde, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos relativos à prestação dos serviços, bem como por informações insuficientes ou inadequadas sobre sua fruição e riscos.",
-      "keywords": ["defeito", "serviço", "responsabilidade", "reparação", "danos"],
+      "title": "Responsabilidade pelo Fato do Serviço",
+      "content": "O fornecedor de serviços responde, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos relativos à prestação dos serviços, bem como por informações insuficientes ou inadequadas sobre sua fruição e riscos. O serviço é defeituoso quando não fornece a segurança que o consumidor dele pode esperar.",
+      "keywords": ["defeito", "serviço", "responsabilidade objetiva", "reparação", "danos"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "17",
+      "title": "Responsabilidade Solidária",
+      "content": "Para os efeitos desta Seção, equiparam-se aos fornecedores todos aqueles que desenvolvem atividade de produção, montagem, criação, construção, transformação, importação, exportação, distribuição ou comercialização de produtos ou prestação de serviços. Havendo mais de um responsável pela causação do dano, todos responderão solidariamente pela reparação.",
+      "keywords": ["solidariedade", "cadeia de fornecimento", "responsabilidade conjunta"],
       "category": "responsabilidade"
     },
     {
       "number": "18",
-      "title": "Produto ou Serviço Impróprio",
-      "content": "Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam.",
-      "keywords": ["vício", "qualidade", "produto impróprio", "inadequado"],
+      "title": "Vícios de Qualidade do Produto",
+      "content": "Os fornecedores de produtos de consumo duráveis ou não duráveis respondem solidariamente pelos vícios de qualidade ou quantidade que os tornem impróprios ou inadequados ao consumo a que se destinam ou lhes diminuam o valor, assim como por aqueles decorrentes da disparidade, com as indicações constantes do recipiente, da embalagem, rotulagem ou mensagem publicitária. O consumidor pode exigir, alternativamente e à sua escolha: I - a substituição do produto por outro da mesma espécie; II - a restituição imediata da quantia paga; III - o abatimento proporcional do preço.",
+      "keywords": ["vício", "qualidade", "produto impróprio", "inadequado", "substituição", "restituição"],
+      "category": "vicios_qualidade"
+    },
+    {
+      "number": "19",
+      "title": "Prazo para Reclamação de Vícios Aparentes",
+      "content": "Os fornecedores respondem solidariamente pelos vícios de quantidade do produto sempre que, respeitadas as variações decorrentes de sua natureza, seu conteúdo líquido for inferior às indicações constantes do recipiente, da embalagem, rotulagem ou de mensagem publicitária, podendo o consumidor exigir, alternativamente e à sua escolha: I - o abatimento proporcional do preço; II - complementação do peso ou medida; III - a substituição do produto por outro da mesma espécie, marca ou modelo, sem os aludidos vícios; IV - a restituição imediata da quantia paga, monetariamente atualizada.",
+      "keywords": ["vício de quantidade", "conteúdo inferior", "peso", "medida", "complementação"],
       "category": "vicios_qualidade"
     },
     {
       "number": "20",
-      "title": "Vício do Produto ou Serviço",
-      "content": "O fornecedor de serviços responde pelos vícios de qualidade que os tornem impróprios ao consumo ou lhes diminuam o valor, assim como por aqueles decorrentes da disparidade com as indicações constantes da oferta ou mensagem publicitária.",
-      "keywords": ["vício", "serviço", "impróprio", "valor diminuído", "oferta"],
+      "title": "Vícios de Qualidade do Serviço",
+      "content": "O fornecedor de serviços responde pelos vícios de qualidade que os tornem impróprios ao consumo ou lhes diminuam o valor, assim como por aqueles decorrentes da disparidade com as indicações constantes da oferta ou mensagem publicitária, podendo o consumidor exigir, alternativamente e à sua escolha: I - a reexecução dos serviços, sem custo adicional e quando cabível; II - a restituição imediata da quantia paga, monetariamente atualizada; III - o abatimento proporcional do preço.",
+      "keywords": ["vício", "serviço", "impróprio", "valor diminuído", "oferta", "reexecução"],
       "category": "vicios_qualidade"
     },
     {
+      "number": "21",
+      "title": "Vício Oculto e Serviços Essenciais",
+      "content": "No fornecimento de serviços que tenham por objetivo a reparação de qualquer produto considerar-se-á implícita a obrigação do fornecedor de empregar componentes de reposição originais adequados e novos, ou que mantenham as especificações técnicas do fabricante, salvo, quanto a estes últimos, autorização em contrário do consumidor.",
+      "keywords": ["reparação", "componentes originais", "reposição", "especificações técnicas"],
+      "category": "vicios_qualidade"
+    },
+    {
+      "number": "22",
+      "title": "Responsabilidade por Vícios de Serviços Essenciais",
+      "content": "Os órgãos públicos, por si ou suas empresas, concessionárias, permissionárias ou sob qualquer outra forma de empreendimento, são obrigados a fornecer serviços adequados, eficientes, seguros e, quanto aos essenciais, contínuos. Nos casos de descumprimento, total ou parcial, das obrigações referidas neste artigo, serão as pessoas jurídicas compelidas a cumpri-las e a reparar os danos causados, na forma prevista neste código.",
+      "keywords": ["serviço público", "essencial", "continuidade", "eficiência", "concessionária"],
+      "category": "vicios_qualidade"
+    },
+    {
+      "number": "23",
+      "title": "Ignorância sobre Vícios",
+      "content": "A ignorância do fornecedor sobre os vícios de qualidade por inadequação dos produtos e serviços não o exime de responsabilidade.",
+      "keywords": ["ignorância", "responsabilidade", "vício", "inadequação"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "24",
+      "title": "Garantia Legal",
+      "content": "A garantia legal de adequação do produto ou serviço independe de termo expresso, vedada a exoneração contratual do fornecedor. Os vícios aparentes ou de fácil constatação pelo consumidor deverão ser reclamados no prazo de 30 dias, tratando-se de produto ou serviço não durável. Sendo o produto ou serviço durável, o prazo é de 90 dias.",
+      "keywords": ["garantia legal", "30 dias", "90 dias", "vício aparente", "não durável", "durável"],
+      "category": "vicios_qualidade"
+    },
+    {
+      "number": "25",
+      "title": "Sanção Administrativa",
+      "content": "É vedada a estipulação contratual de cláusula que impossibilite, exonere ou atenue a obrigação de indenizar prevista nesta e nas seções anteriores. Havendo mais de um responsável pela causação do dano, todos responderão solidariamente pela reparação prevista nesta e nas seções anteriores.",
+      "keywords": ["indenização", "solidariedade", "cláusula abusiva", "exoneração"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "26",
+      "title": "Prazo de Reclamação por Vício",
+      "content": "O direito de reclamar pelos vícios aparentes ou de fácil constatação caduca em: I - trinta dias, tratando-se de fornecimento de serviço e de produtos não duráveis; II - noventa dias, tratando-se de fornecimento de serviço e de produtos duráveis. Inicia-se a contagem do prazo decadencial a partir da entrega efetiva do produto ou do término da execução dos serviços. Obstam a decadência: I - a reclamação comprovadamente formulada pelo consumidor perante o fornecedor de produtos e serviços até a resposta negativa correspondente; II - a instauração de inquérito civil, até seu encerramento.",
+      "keywords": ["decadência", "30 dias", "90 dias", "prazo", "reclamação", "vício aparente"],
+      "category": "prescricao"
+    },
+    {
+      "number": "27",
+      "title": "Prescrição para Reparação de Danos",
+      "content": "Prescreve em cinco anos a pretensão à reparação pelos danos causados por fato do produto ou do serviço prevista na Seção II deste Capítulo, iniciando-se a contagem do prazo a partir do conhecimento do dano e de sua autoria. Obstam a prescrição: I - a reclamação comprovadamente formulada pelo consumidor perante o fornecedor de produtos e serviços até a resposta negativa correspondente; II - a instauração de inquérito civil, até seu encerramento.",
+      "keywords": ["prescrição", "5 anos", "reparação de danos", "fato do produto", "prazo prescricional"],
+      "category": "prescricao"
+    },
+    {
+      "number": "28",
+      "title": "Prova das Alegações",
+      "content": "Incumbe ao fornecedor o ônus da prova da não ocorrência do defeito, da culpa exclusiva do consumidor ou de terceiro. Sem embargo das disposições legais que impõem determinada espécie de prova, o juiz é livre para se convencer da prova produzida, podendo, em conformidade com a situação, ordenar a produção de outras provas.",
+      "keywords": ["ônus da prova", "inversão", "prova", "defeito", "fornecedor"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "30",
+      "title": "Vinculação à Oferta",
+      "content": "Toda informação ou publicidade, suficientemente precisa, veiculada por qualquer forma ou meio de comunicação com relação a produtos e serviços oferecidos ou apresentados, obriga o fornecedor que a fizer veicular ou dela se utilizar e integra o contrato que vier a ser celebrado.",
+      "keywords": ["oferta", "publicidade", "vinculação", "obrigatoriedade", "contrato"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "31",
+      "title": "Informação Correta e Clara",
+      "content": "A oferta e apresentação de produtos ou serviços devem assegurar informações corretas, claras, precisas, ostensivas e em língua portuguesa sobre suas características, qualidades, quantidade, composição, preço, garantia, prazos de validade e origem, entre outros dados, bem como sobre os riscos que apresentam à saúde e segurança dos consumidores.",
+      "keywords": ["informação clara", "oferta", "características", "preço", "riscos", "língua portuguesa"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "33",
+      "title": "Oferta em Anúncio Publicitário",
+      "content": "Em caso de oferta ou venda por telefone ou reembolso postal, deve constar o nome do fabricante e endereço na embalagem, publicidade e em todos os impressos utilizados na transação comercial. É proibida a publicidade de bens e serviços por telefone, quando a chamada for onerosa ao consumidor que a origina.",
+      "keywords": ["venda por telefone", "reembolso postal", "publicidade telefônica", "identificação"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "34",
+      "title": "Publicidade Enganosa",
+      "content": "O fornecedor do produto ou serviço é solidariamente responsável pelos atos de seus prepostos ou representantes autônomos. É assegurada ao consumidor a informação adequada e clara sobre os diferentes produtos e serviços, com especificação correta de quantidade, características, composição, qualidade, tributos incidentes e preço, bem como sobre os riscos que apresentem.",
+      "keywords": ["informação adequada", "especificação", "transparência", "preço", "tributos"],
+      "category": "oferta_publicidade"
+    },
+    {
       "number": "35",
-      "title": "Informações Obrigatórias",
-      "content": "Se o fornecedor de produtos ou serviços recusar cumprimento à oferta, apresentação ou publicidade, o consumidor poderá, alternativamente e à sua livre escolha: I - exigir o cumprimento forçado da obrigação; II - aceitar outro produto ou prestação de serviço equivalente; III - rescindir o contrato, com direito à restituição de quantia eventualmente antecipada.",
-      "keywords": ["oferta", "publicidade", "descumprimento", "restituição"],
+      "title": "Descumprimento da Oferta",
+      "content": "Se o fornecedor de produtos ou serviços recusar cumprimento à oferta, apresentação ou publicidade, o consumidor poderá, alternativamente e à sua livre escolha: I - exigir o cumprimento forçado da obrigação, nos termos da oferta, apresentação ou publicidade; II - aceitar outro produto ou prestação de serviço equivalente; III - rescindir o contrato, com direito à restituição de quantia eventualmente antecipada, monetariamente atualizada, e a perdas e danos.",
+      "keywords": ["oferta", "publicidade", "descumprimento", "restituição", "cumprimento forçado"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "36",
+      "title": "Publicidade Deve Ser Facilmente Identificável",
+      "content": "A publicidade deve ser veiculada de tal forma que o consumidor, fácil e imediatamente, a identifique como tal. O fornecedor, na publicidade de seus produtos ou serviços, manterá, em seu poder, para informação dos legítimos interessados, os dados fáticos, técnicos e científicos que dão sustentação à mensagem.",
+      "keywords": ["publicidade", "identificação", "transparência", "dados técnicos"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "37",
+      "title": "Publicidade Enganosa - Definição",
+      "content": "É proibida toda publicidade enganosa ou abusiva. É enganosa qualquer modalidade de informação ou comunicação de caráter publicitário, inteira ou parcialmente falsa, ou, por qualquer outro modo, mesmo por omissão, capaz de induzir em erro o consumidor a respeito da natureza, características, qualidade, quantidade, propriedades, origem, preço e quaisquer outros dados sobre produtos e serviços.",
+      "keywords": ["publicidade enganosa", "informação falsa", "omissão", "indução a erro"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "38",
+      "title": "Publicidade Abusiva - Definição",
+      "content": "É abusiva, dentre outras, a publicidade discriminatória de qualquer natureza, a que incite à violência, explore o medo ou a superstição, se aproveite da deficiência de julgamento e experiência da criança, desrespeita valores ambientais, ou que seja capaz de induzir o consumidor a se comportar de forma prejudicial ou perigosa à sua saúde ou segurança.",
+      "keywords": ["publicidade abusiva", "discriminatória", "criança", "violência", "meio ambiente"],
       "category": "oferta_publicidade"
     },
     {
       "number": "39",
-      "title": "Cláusulas Abusivas",
-      "content": "É vedado ao fornecedor de produtos ou serviços: I - condicionar o fornecimento de produto ou de serviço ao fornecimento de outro produto ou serviço; II - recusar atendimento às demandas dos consumidores; III - enviar ou entregar ao consumidor, sem solicitação prévia, qualquer produto, ou fornecer qualquer serviço.",
-      "keywords": ["cláusula abusiva", "venda casada", "recusa", "produto não solicitado"],
+      "title": "Práticas Abusivas Proibidas",
+      "content": "É vedado ao fornecedor de produtos ou serviços, dentre outras práticas abusivas: I - condicionar o fornecimento de produto ou de serviço ao fornecimento de outro produto ou serviço, bem como, sem justa causa, a limites quantitativos (venda casada); II - recusar atendimento às demandas dos consumidores, na exata medida de suas disponibilidades de estoque; III - enviar ou entregar ao consumidor, sem solicitação prévia, qualquer produto, ou fornecer qualquer serviço; IV - prevalecer-se da fraqueza ou ignorância do consumidor, tendo em vista sua idade, saúde, conhecimento ou condição social; V - exigir do consumidor vantagem manifestamente excessiva; VI - executar serviços sem a prévia elaboração de orçamento; VII - repassar informação depreciativa, referente a ato praticado pelo consumidor no exercício de seus direitos; VIII - colocar, no mercado de consumo, qualquer produto ou serviço em desacordo com as normas expedidas pelos órgãos oficiais competentes.",
+      "keywords": ["prática abusiva", "venda casada", "recusa", "produto não solicitado", "vantagem excessiva", "orçamento"],
+      "category": "praticas_abusivas"
+    },
+    {
+      "number": "40",
+      "title": "Fornecedor de Serviços - Orçamento Prévio",
+      "content": "O fornecedor de serviços será obrigado a entregar ao consumidor orçamento prévio discriminando o valor da mão-de-obra, dos materiais e equipamentos a serem empregados, as condições de pagamento, bem como as datas de início e término dos serviços. Somente depois de aprovado pelo consumidor, o fornecedor de serviços poderá executar o serviço, salvo situações de urgência ou emergência.",
+      "keywords": ["orçamento prévio", "aprovação", "discriminação de valores", "serviço"],
+      "category": "praticas_abusivas"
+    },
+    {
+      "number": "41",
+      "title": "Banco de Dados e Cadastros",
+      "content": "No caso de fornecimento de produtos ou de serviços sujeitos ao regime de controle ou de tabelamento de preços, os fornecedores deverão respeitar os limites oficiais sob pena de não o fazendo, responderem pela restituição da quantia recebida em excesso, monetariamente atualizada, podendo o consumidor exigir, à sua escolha, o desfazimento do negócio, sem prejuízo de outras sanções cabíveis.",
+      "keywords": ["tabelamento", "controle de preços", "excesso", "restituição"],
       "category": "praticas_abusivas"
     },
     {
       "number": "42",
-      "title": "Cobrança Indevida",
-      "content": "Na cobrança de débitos, o consumidor inadimplente não será exposto a ridículo, nem será submetido a qualquer tipo de constrangimento ou ameaça. Parágrafo único: O consumidor cobrado em quantia indevida tem direito à repetição do indébito, por valor igual ao dobro do que pagou em excesso, acrescido de correção monetária e juros legais.",
-      "keywords": ["cobrança indevida", "devolução em dobro", "repetição indébito", "constrangimento"],
+      "title": "Cobrança de Dívidas",
+      "content": "Na cobrança de débitos, o consumidor inadimplente não será exposto a ridículo, nem será submetido a qualquer tipo de constrangimento ou ameaça. O consumidor cobrado em quantia indevida tem direito à repetição do indébito, por valor igual ao dobro do que pagou em excesso, acrescido de correção monetária e juros legais, salvo hipótese de engano justificável.",
+      "keywords": ["cobrança indevida", "devolução em dobro", "repetição indébito", "constrangimento", "ridículo"],
       "category": "cobranca"
+    },
+    {
+      "number": "43",
+      "title": "Banco de Dados e Cadastros de Consumidores",
+      "content": "O consumidor, sem prejuízo do disposto no art. 86, terá acesso às informações existentes em cadastros, fichas, registros e dados pessoais e de consumo arquivados sobre ele, bem como sobre as suas respectivas fontes. Os cadastros e dados de consumidores devem ser objetivos, claros, verdadeiros e em linguagem de fácil compreensão, não podendo conter informações negativas referentes a período superior a cinco anos. Consumada a prescrição relativa à cobrança de débitos do consumidor, não serão fornecidas, pelos respectivos Sistemas de Proteção ao Crédito, quaisquer informações que possam impedir ou dificultar novo acesso ao crédito junto aos fornecedores.",
+      "keywords": ["cadastro", "dados pessoais", "proteção ao crédito", "SPC", "Serasa", "5 anos"],
+      "category": "cobranca"
+    },
+    {
+      "number": "44",
+      "title": "Abertura de Cadastro e Ficha",
+      "content": "Os órgãos públicos de defesa do consumidor manterão cadastros atualizados de reclamações fundamentadas contra fornecedores de produtos e serviços, devendo divulgá-lo pública e anualmente. A divulgação indicará se a reclamação foi atendida ou não pelo fornecedor. É parte legítima para agir a associação regularmente constituída há pelo menos um ano e que inclua entre seus fins institucionais a defesa dos interesses e direitos dos consumidores.",
+      "keywords": ["cadastro de reclamações", "Procon", "publicidade", "atendimento"],
+      "category": "cobranca"
+    },
+    {
+      "number": "46",
+      "title": "Contratos - Redação Clara",
+      "content": "Os contratos que regulam as relações de consumo não obrigarão os consumidores, se não lhes for dada a oportunidade de tomar conhecimento prévio de seu conteúdo, ou se os respectivos instrumentos forem redigidos de modo a dificultar a compreensão de seu sentido e alcance. As cláusulas contratuais serão interpretadas de maneira mais favorável ao consumidor.",
+      "keywords": ["contrato", "clareza", "interpretação favorável", "conhecimento prévio"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "47",
+      "title": "Cláusulas Contratuais Abusivas",
+      "content": "As cláusulas contratuais serão interpretadas de maneira mais favorável ao consumidor. As declarações de vontade constantes de escritos particulares, recibos e pré-contratos relativos às relações de consumo vinculam o fornecedor, ensejando inclusive execução específica, nos termos do art. 84 e parágrafos.",
+      "keywords": ["interpretação favorável", "vinculação", "execução específica"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "48",
+      "title": "Declarações de Vontade",
+      "content": "As declarações de vontade constantes de escritos particulares, recibos e pré-contratos relativos às relações de consumo vinculam o fornecedor, ensejando inclusive execução específica. As cláusulas que implicarem limitação de direito do consumidor deverão ser redigidas com destaque, permitindo sua imediata e fácil compreensão.",
+      "keywords": ["declaração de vontade", "recibo", "pré-contrato", "destaque", "cláusula limitativa"],
+      "category": "clausulas_contratuais"
     },
     {
       "number": "49",
       "title": "Direito de Arrependimento",
-      "content": "O consumidor pode desistir do contrato, no prazo de 7 dias a contar de sua assinatura ou do ato de recebimento do produto ou serviço, sempre que a contratação de fornecimento de produtos e serviços ocorrer fora do estabelecimento comercial, especialmente por telefone ou a domicílio.",
-      "keywords": ["arrependimento", "7 dias", "cancelamento", "fora do estabelecimento"],
+      "content": "O consumidor pode desistir do contrato, no prazo de 7 (sete) dias a contar de sua assinatura ou do ato de recebimento do produto ou serviço, sempre que a contratação de fornecimento de produtos e serviços ocorrer fora do estabelecimento comercial, especialmente por telefone ou a domicílio. Se o consumidor exercitar o direito de arrependimento, os valores eventualmente pagos, a qualquer título, durante o prazo de reflexão, serão devolvidos, de imediato, monetariamente atualizados.",
+      "keywords": ["arrependimento", "7 dias", "cancelamento", "fora do estabelecimento", "devolução", "compra online"],
       "category": "arrependimento"
+    },
+    {
+      "number": "50",
+      "title": "Garantia Contratual",
+      "content": "A garantia contratual é complementar à legal e será conferida mediante termo escrito. O termo de garantia ou equivalente deve ser padronizado e esclarecer, de maneira adequada em que consiste a mesma garantia, bem como a forma, o prazo e o lugar em que pode ser exercitada e os ônus a cargo do consumidor, devendo ser-lhe entregue, devidamente preenchido pelo fornecedor, no ato do fornecimento, acompanhado de manual de instrução, de instalação e uso do produto em linguagem didática, com ilustrações.",
+      "keywords": ["garantia contratual", "termo de garantia", "manual", "instruções"],
+      "category": "garantia"
     },
     {
       "number": "51",
       "title": "Cláusulas Nulas de Pleno Direito",
-      "content": "São nulas de pleno direito as cláusulas contratuais relativas ao fornecimento de produtos e serviços que: I - impossibilitem, exonerem ou atenuem a responsabilidade do fornecedor; II - subtraiam ao consumidor a opção de reembolso da quantia já paga; IV - estabeleçam obrigações consideradas iníquas, abusivas, que coloquem o consumidor em desvantagem exagerada.",
-      "keywords": ["cláusula nula", "abusiva", "desvantagem", "iníqua"],
+      "content": "São nulas de pleno direito, entre outras, as cláusulas contratuais relativas ao fornecimento de produtos e serviços que: I - impossibilitem, exonerem ou atenuem a responsabilidade do fornecedor por vícios de qualquer natureza dos produtos e serviços ou impliquem renúncia ou disposição de direitos; II - subtraiam ao consumidor a opção de reembolso da quantia já paga, nos casos previstos neste código; III - transfiram responsabilidades a terceiros; IV - estabeleçam obrigações consideradas iníquas, abusivas, que coloquem o consumidor em desvantagem exagerada, ou sejam incompatíveis com a boa-fé ou a equidade; V - estabeleçam a inversão do ônus da prova em prejuízo do consumidor; VI - determinem a utilização compulsória de arbitragem; VII - imponham representante para concluir ou realizar outro negócio jurídico pelo consumidor; VIII - deixem ao fornecedor a opção de concluir ou não o contrato; IX - permitam ao fornecedor, direta ou indiretamente, variação do preço de maneira unilateral; X - autorizem o fornecedor a cancelar o contrato unilateralmente; XI - obriguem o consumidor a ressarcir os custos de cobrança de sua obrigação; XIII - autorizem o fornecedor a modificar unilateralmente o conteúdo ou a qualidade do contrato; XIV - infrinjam ou possibilitem a violação de normas ambientais; XV - estejam em desacordo com o sistema de proteção ao consumidor; XVI - possibilitem a renúncia do direito de indenização por benfeitorias necessárias.",
+      "keywords": ["cláusula nula", "abusiva", "desvantagem exagerada", "iníqua", "boa-fé", "exoneração", "arbitragem"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "52",
+      "title": "Cláusulas Abusivas - Presunção de Vantagem Exagerada",
+      "content": "No fornecimento de produtos ou serviços que envolva outorga de crédito ou concessão de financiamento ao consumidor, o fornecedor deverá, entre outros requisitos, informá-lo prévia e adequadamente sobre: I - preço do produto ou serviço em moeda corrente nacional; II - montante dos juros de mora e da taxa efetiva anual de juros; III - acréscimos legalmente previstos; IV - número e periodicidade das prestações; V - soma total a pagar, com e sem financiamento. Presume-se exagerada, entre outros casos, a vantagem que: I - ofende os princípios fundamentais do sistema jurídico a que pertence; II - restringe direitos ou obrigações fundamentais inerentes à natureza do contrato, de tal modo a ameaçar seu objeto ou equilíbrio contratual; III - se mostra excessivamente onerosa para o consumidor.",
+      "keywords": ["crédito", "financiamento", "juros", "prestações", "vantagem exagerada", "onerosidade excessiva"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "53",
+      "title": "Contratos de Adesão",
+      "content": "Nos contratos de adesão, as cláusulas de limitação de responsabilidade do fornecedor deverão ser redigidas com destaque, permitindo sua imediata e fácil compreensão. Nos contratos de adesão admite-se cláusula resolutória, entretanto, ela não poderá ser invocada se ficar ao livre arbítrio do fornecedor. Nos contratos de adesão escritos em instrumentos separados, isso é, feitos por meio de formulários, fichas ou similares, a assinatura do consumidor será obrigatória em todas as suas folhas, sendo facultado ao fornecedor o envio de uma via do contrato ao consumidor.",
+      "keywords": ["contrato de adesão", "destaque", "cláusula resolutória", "assinatura"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "54",
+      "title": "Contrato em Lugar Diferente do Domicílio",
+      "content": "Contrato de adesão é aquele cujas cláusulas tenham sido aprovadas pela autoridade competente ou estabelecidas unilateralmente pelo fornecedor de produtos ou serviços, sem que o consumidor possa discutir ou modificar substancialmente seu conteúdo. A inserção de cláusula no formulário não desfigura a natureza de adesão do contrato. Nos contratos de adesão, a inserção de cláusula que impossibilite, exonere ou atenue a obrigação do fornecedor de indenizar não tem qualquer validade.",
+      "keywords": ["adesão", "cláusula unilateral", "impossibilidade de discussão"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "55",
+      "title": "Foro Competente",
+      "content": "Nos contratos de adesão admite-se cláusula resolutória. A cláusula que estabelecer a obrigação de solução de controvérsias por meio de arbitragem será nula quando imposta no fornecimento de produtos e serviços.",
+      "keywords": ["cláusula resolutória", "arbitragem", "nulidade"],
+      "category": "clausulas_contratuais"
+    },
+    {
+      "number": "56",
+      "title": "Interpretação dos Contratos",
+      "content": "Nas relações de consumo, as cláusulas contratuais abusivas tornam-se ineficazes de pleno direito, sem que isso ocasione a invalidade do contrato. A nulidade de uma cláusula contratual abusiva não invalida o contrato, exceto quando de sua ausência, apesar dos esforços de integração, decorrer ônus excessivo a qualquer das partes.",
+      "keywords": ["nulidade", "ineficácia", "validade do contrato", "integração"],
       "category": "clausulas_contratuais"
     },
     {
       "number": "71",
-      "title": "Publicidade Enganosa ou Abusiva",
-      "content": "Utilizar, na cobrança de dívidas, de ameaça, coação, constrangimento físico ou moral, afirmações falsas incorretas ou enganosas ou de qualquer outro procedimento que exponha o consumidor, injustificadamente, a ridículo ou interfira com seu trabalho, descanso ou lazer.",
-      "keywords": ["cobrança abusiva", "ameaça", "coação", "constrangimento"],
+      "title": "Crimes Contra Relações de Consumo - Cobrança Abusiva",
+      "content": "Utilizar, na cobrança de dívidas, de ameaça, coação, constrangimento físico ou moral, afirmações falsas incorretas ou enganosas ou de qualquer outro procedimento que exponha o consumidor, injustificadamente, a ridículo ou interfira com seu trabalho, descanso ou lazer: Pena - Detenção de três meses a um ano e multa.",
+      "keywords": ["crime", "cobrança abusiva", "ameaça", "coação", "constrangimento", "pena"],
       "category": "cobranca"
+    },
+    {
+      "number": "72",
+      "title": "Coação para Cobrança de Dívida",
+      "content": "Impedir ou dificultar o acesso do consumidor às informações que sobre ele constem em cadastros, banco de dados, fichas e registros: Pena - Detenção de seis meses a um ano ou multa.",
+      "keywords": ["crime", "impedimento de acesso", "cadastro", "dados", "pena"],
+      "category": "cobranca"
+    },
+    {
+      "number": "73",
+      "title": "Deixar de Entregar ao Consumidor Termo de Garantia",
+      "content": "Deixar de corrigir imediatamente informação sobre consumidor constante de cadastro, banco de dados, fichas ou registros que sabe ou deveria saber ser inexata: Pena - Detenção de um a seis meses ou multa.",
+      "keywords": ["crime", "informação inexata", "correção", "cadastro", "pena"],
+      "category": "cobranca"
+    },
+    {
+      "number": "74",
+      "title": "Deixar de Entregar Manual de Instrução",
+      "content": "Deixar de entregar ao consumidor o termo de garantia adequadamente preenchido e com especificação clara de seu conteúdo: Pena - Detenção de um a seis meses ou multa.",
+      "keywords": ["crime", "termo de garantia", "omissão", "pena"],
+      "category": "garantia"
+    },
+    {
+      "number": "75",
+      "title": "Publicidade Enganosa ou Abusiva - Crime",
+      "content": "Quem, de qualquer modo, inclusive por meio de pessoa jurídica, concorrer para os crimes tipificados neste código, incide nas penas a esses cominadas na medida de sua culpabilidade, bem como o diretor, administrador ou gerente da pessoa jurídica que promover, permitir ou por qualquer modo aprovar o fornecimento, oferta, exposição à venda ou manutenção em depósito de produtos ou a oferta e prestação de serviços nas condições por ele proibidas.",
+      "keywords": ["crime", "concorrência", "responsabilidade penal", "diretor", "gerente"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "76",
+      "title": "Omissão de Dizeres ou Sinais Ostensivos",
+      "content": "São circunstâncias agravantes dos crimes tipificados neste código: I - serem cometidos em época de grave crise econômica ou por ocasião de calamidade; II - ocasionarem grave dano individual ou coletivo; III - dissimular-se a natureza ilícita do procedimento; IV - quando cometidos em detrimento de operário ou ruralista; ou de menor de dezoito ou maior de sessenta anos ou de pessoas portadoras de deficiência mental interditadas ou não.",
+      "keywords": ["agravante", "crise econômica", "dano grave", "vulnerável"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "78",
+      "title": "Responsabilidade Civil do Fornecedor",
+      "content": "Além das penas privativas de liberdade e de multa, podem ser impostas, cumulativa ou alternadamente, observado o disposto nos arts. 44 a 47, do Código Penal: I - a interdição temporária de direitos; II - a publicação em órgãos de comunicação de grande circulação ou audiência, às expensas do condenado, de notícia sobre os fatos e a condenação; III - a prestação de serviços à comunidade.",
+      "keywords": ["pena", "interdição", "publicação", "serviços comunitários"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "79",
+      "title": "Ação Civil Pública",
+      "content": "O valor da fiança, nas infrações de que trata este código, será fixado pelo juiz, ou pela autoridade que presidir o inquérito, entre cem e duzentas mil vezes o valor do Bônus do Tesouro Nacional (BTN), ou índice equivalente que venha a substituí-lo. Se assim recomendar a situação econômica do indiciado ou réu, a fiança poderá ser: I - reduzida até a metade do seu valor mínimo; II - aumentada pelo juiz até vinte vezes.",
+      "keywords": ["fiança", "valor", "situação econômica"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "81",
+      "title": "Defesa dos Interesses e Direitos Coletivos",
+      "content": "A defesa dos interesses e direitos dos consumidores e das vítimas poderá ser exercida em juízo individualmente, ou a título coletivo. A defesa coletiva será exercida quando se tratar de: I - interesses ou direitos difusos, assim entendidos, para efeitos deste código, os transindividuais, de natureza indivisível, de que sejam titulares pessoas indeterminadas e ligadas por circunstâncias de fato; II - interesses ou direitos coletivos, assim entendidos, para efeitos deste código, os transindividuais, de natureza indivisível de que seja titular grupo, categoria ou classe de pessoas ligadas entre si ou com a parte contrária por uma relação jurídica base; III - interesses ou direitos individuais homogêneos, assim entendidos os decorrentes de origem comum.",
+      "keywords": ["direitos coletivos", "difusos", "homogêneos", "ação coletiva"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "82",
+      "title": "Legitimidade para Propor Ação Coletiva",
+      "content": "Para os fins do art. 81, parágrafo único, são legitimados concorrentemente: I - o Ministério Público; II - a União, os Estados, os Municípios e o Distrito Federal; III - as entidades e órgãos da Administração Pública, direta ou indireta, ainda que sem personalidade jurídica, especificamente destinados à defesa dos interesses e direitos protegidos por este código; IV - as associações legalmente constituídas há pelo menos um ano e que incluam entre seus fins institucionais a defesa dos interesses e direitos protegidos por este código, dispensada a autorização assemblear.",
+      "keywords": ["legitimidade", "Ministério Público", "Procon", "associação de consumidores"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "83",
+      "title": "Todas as Espécies de Ações Admitidas",
+      "content": "Para a defesa dos direitos e interesses protegidos por este código são admissíveis todas as espécies de ações capazes de propiciar sua adequada e efetiva tutela. É admissível a propositura de ação cautelar para os fins desta Lei. O processo em que se pleiteia a proteção do consumidor será suspenso se houver, em curso, processo de conhecimento em que se discuta a mesma questão.",
+      "keywords": ["ações", "tutela", "ação cautelar", "proteção"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "84",
+      "title": "Tutela Específica",
+      "content": "Na ação que tenha por objeto o cumprimento da obrigação de fazer ou não fazer, o juiz concederá a tutela específica da obrigação ou determinará providências que assegurem o resultado prático equivalente ao do adimplemento. A conversão da obrigação em perdas e danos somente será admissível se por elas optar o autor ou se impossível a tutela específica ou a obtenção do resultado prático correspondente. A indenização por perdas e danos se fará sem prejuízo da multa.",
+      "keywords": ["tutela específica", "obrigação de fazer", "perdas e danos", "multa"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "86",
+      "title": "Inversão do Ônus da Prova",
+      "content": "Instaurado o processo, o juiz poderá, na fase de instrução, determinar a produção de qualquer prova que considere adequada ao esclarecimento dos fatos. O juiz admitirá a inversão do ônus da prova em favor do consumidor quando, a seu critério, for verossímil a alegação ou quando for ele hipossuficiente, segundo as regras ordinárias de experiências.",
+      "keywords": ["inversão do ônus", "prova", "verossimilhança", "hipossuficiência"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "87",
+      "title": "Multa em Favor do Consumidor",
+      "content": "Nas ações coletivas de que trata este código não haverá adiantamento de custas, emolumentos, honorários periciais e quaisquer outras despesas, nem condenação da associação autora, salvo comprovada má-fé, em honorários de advogados, custas e despesas processuais. Em caso de litigância de má-fé, a associação autora e os diretores responsáveis pela propositura da ação serão solidariamente condenados em honorários advocatícios e ao décuplo das custas, sem prejuízo da responsabilidade por perdas e danos.",
+      "keywords": ["ação coletiva", "custas", "má-fé", "honorários"],
+      "category": "direitos_fundamentais"
     }
   ]
 }
