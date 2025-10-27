@@ -3,7 +3,7 @@ Scorer: Rankeia recomendações (amigável/extrajudicial/judicial).
 """
 
 from typing import List, Dict, Any
-from .rules import RECOMMENDATION_BASE_SCORES, SCORE_MODIFIERS
+from .config_loader import get_config
 
 import logging
 
@@ -14,6 +14,10 @@ class RecommendationScorer:
     """
     Rankeia soluções baseado no contexto do caso.
     """
+
+    def __init__(self):
+        """Inicializa scorer com config loader."""
+        self.config = get_config()
 
     def calculate_scores(
         self,
@@ -36,54 +40,72 @@ class RecommendationScorer:
         """
         logger.info(f"[SCORER] Calculando scores")
 
+        # Carrega configurações
+        base_scores_config = self.config.get_recommendation_scores()
+        modifiers_config = self.config.get_score_modifiers()
+
         # Scores base
         scores = {
-            "amigavel": RECOMMENDATION_BASE_SCORES["amigavel"]["base"],
-            "extrajudicial": RECOMMENDATION_BASE_SCORES["extrajudicial"]["base"],
-            "judicial": RECOMMENDATION_BASE_SCORES["judicial"]["base"],
+            "amigavel": base_scores_config["amigavel"]["base"],
+            "extrajudicial": base_scores_config["extrajudicial"]["base"],
+            "judicial": base_scores_config["judicial"]["base"],
         }
 
         # === APLICAR MODIFICADORES ===
 
         # 1. Documentos
         if has_documents:
-            for solution_type, modifier in SCORE_MODIFIERS["has_documents"].items():
-                scores[solution_type] += modifier
+            mod = modifiers_config.get("has_documents", {})
+            for solution_type in ["amigavel", "extrajudicial", "judicial"]:
+                scores[solution_type] += mod.get(solution_type, 0)
             logger.info(f"[SCORER] Modificador: possui documentos")
 
         # 2. Violação clara (Art. 42 ou 71)
         article_numbers = [a["number"] for a in relevant_articles]
-        if "42" in article_numbers or "71" in article_numbers:
-            for solution_type, modifier in SCORE_MODIFIERS["clear_violation"].items():
-                scores[solution_type] += modifier
-            logger.info(f"[SCORER] Modificador: violação clara (Art. 42/71)")
+        clear_violation_mod = modifiers_config.get("clear_violation", {})
+        clear_violation_articles = clear_violation_mod.get("articles", ["42", "71"])
+
+        if any(art in article_numbers for art in clear_violation_articles):
+            for solution_type in ["amigavel", "extrajudicial", "judicial"]:
+                scores[solution_type] += clear_violation_mod.get(solution_type, 0)
+            logger.info(f"[SCORER] Modificador: violação clara (Art. {'/'.join(clear_violation_articles)})")
 
         # 3. Valor envolvido
         if monetary_value:
-            if monetary_value < 1000:
-                for solution_type, modifier in SCORE_MODIFIERS["low_value"].items():
-                    scores[solution_type] += modifier
-                logger.info(f"[SCORER] Modificador: valor baixo (< R$ 1.000)")
-            elif monetary_value > 10000:
-                for solution_type, modifier in SCORE_MODIFIERS["high_value"].items():
-                    scores[solution_type] += modifier
-                logger.info(f"[SCORER] Modificador: valor alto (> R$ 10.000)")
+            low_value_mod = modifiers_config.get("low_value", {})
+            high_value_mod = modifiers_config.get("high_value", {})
+
+            low_threshold = low_value_mod.get("threshold", 1000)
+            high_threshold = high_value_mod.get("threshold", 10000)
+
+            if monetary_value < low_threshold:
+                for solution_type in ["amigavel", "extrajudicial", "judicial"]:
+                    scores[solution_type] += low_value_mod.get(solution_type, 0)
+                logger.info(f"[SCORER] Modificador: valor baixo (< R$ {low_threshold:,.2f})")
+            elif monetary_value > high_threshold:
+                for solution_type in ["amigavel", "extrajudicial", "judicial"]:
+                    scores[solution_type] += high_value_mod.get(solution_type, 0)
+                logger.info(f"[SCORER] Modificador: valor alto (> R$ {high_threshold:,.2f})")
 
         # 4. Tentativas anteriores
         if has_previous_attempts:
-            for solution_type, modifier in SCORE_MODIFIERS["previous_attempts"].items():
-                scores[solution_type] += modifier
+            mod = modifiers_config.get("previous_attempts", {})
+            for solution_type in ["amigavel", "extrajudicial", "judicial"]:
+                scores[solution_type] += mod.get(solution_type, 0)
             logger.info(f"[SCORER] Modificador: tentativas anteriores")
 
         # 5. Múltiplas violações
-        if len(relevant_articles) >= 3:
-            for solution_type, modifier in SCORE_MODIFIERS["multiple_violations"].items():
-                scores[solution_type] += modifier
+        multiple_violations_mod = modifiers_config.get("multiple_violations", {})
+        multiple_threshold = multiple_violations_mod.get("threshold", 3)
+
+        if len(relevant_articles) >= multiple_threshold:
+            for solution_type in ["amigavel", "extrajudicial", "judicial"]:
+                scores[solution_type] += multiple_violations_mod.get(solution_type, 0)
             logger.info(f"[SCORER] Modificador: múltiplas violações")
 
         # === LIMITA AO MÁXIMO ===
         for solution_type in scores:
-            max_score = RECOMMENDATION_BASE_SCORES[solution_type]["max"]
+            max_score = base_scores_config[solution_type]["max"]
             if scores[solution_type] > max_score:
                 scores[solution_type] = max_score
 
