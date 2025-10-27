@@ -112,12 +112,12 @@ curl http://localhost:8655/api/v1/tickets
 ### ✅ Fase 1-4 (Base Conversacional)
 - FastAPI com SSE
 - LLM Client (Anthropic + OpenAI)
-- RAG com 60 artigos CDC
+- RAG com 90 artigos CDC (expandido de 60)
 - LangGraph (5 nodes)
-- Heurísticas (ValueEstimator + Scorer)
-- PostgreSQL + Redis
+- Heurísticas com jurisprudência aplicada (STJ/TJs 2020-2024)
+- PostgreSQL com criptografia + Redis
 - Upload de documentos com OCR
-- 18 testes unitários
+- 54 testes unitários (todos passando)
 
 ### ✅ Fase 5 (Sistema de Tickets) - **RECÉM COMPLETADO!**
 - ✅ Models completos no banco

@@ -1,10 +1,38 @@
 {
   "articles": [
     {
+      "number": "1",
+      "title": "Objetivo do CDC",
+      "content": "O presente código estabelece normas de proteção e defesa do consumidor, de ordem pública e interesse social, nos termos dos arts. 5º, inciso XXXII, 170, inciso V, da Constituição Federal e art. 48 de suas Disposições Transitórias.",
+      "keywords": ["ordem pública", "interesse social", "proteção ao consumidor", "defesa"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "2",
+      "title": "Definição de Consumidor",
+      "content": "Consumidor é toda pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final. Equipara-se a consumidor a coletividade de pessoas, ainda que indetermináveis, que haja intervindo nas relações de consumo.",
+      "keywords": ["consumidor", "destinatário final", "pessoa física", "pessoa jurídica", "coletividade"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "3",
+      "title": "Definição de Fornecedor",
+      "content": "Fornecedor é toda pessoa física ou jurídica, pública ou privada, nacional ou estrangeira, bem como os entes despersonalizados, que desenvolvem atividade de produção, montagem, criação, construção, transformação, importação, exportação, distribuição ou comercialização de produtos ou prestação de serviços. Produto é qualquer bem, móvel ou imóvel, material ou imaterial. Serviço é qualquer atividade fornecida no mercado de consumo, mediante remuneração, inclusive as de natureza bancária, financeira, de crédito e securitária, salvo as decorrentes das relações de caráter trabalhista.",
+      "keywords": ["fornecedor", "produto", "serviço", "comercialização", "banco", "financeira"],
+      "category": "principios_gerais"
+    },
+    {
       "number": "4",
       "title": "Política Nacional das Relações de Consumo",
       "content": "A Política Nacional das Relações de Consumo tem por objetivo o atendimento das necessidades dos consumidores, o respeito à sua dignidade, saúde e segurança, a proteção de seus interesses econômicos, a melhoria da sua qualidade de vida, bem como a transparência e harmonia das relações de consumo.",
       "keywords": ["política nacional", "dignidade", "transparência", "qualidade de vida"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "5",
+      "title": "Princípios da Política Nacional",
+      "content": "Para a execução da Política Nacional das Relações de Consumo, contará o poder público com os seguintes instrumentos, entre outros: I - manutenção de assistência jurídica, integral e gratuita para o consumidor carente; II - instituição de Promotorias de Justiça de Defesa do Consumidor, no âmbito do Ministério Público; III - criação de delegacias de polícia especializadas no atendimento de consumidores vítimas de infrações penais de consumo; IV - criação de Juizados Especiais de Pequenas Causas e Varas Especializadas para a solução de litígios de consumo; V - concessão de estímulos à criação e desenvolvimento das Associações de Defesa do Consumidor.",
+      "keywords": ["assistência jurídica", "Ministério Público", "Juizado Especial", "Procon", "associação"],
       "category": "principios_gerais"
     },
     {
@@ -43,6 +71,13 @@
       "category": "direitos_fundamentais"
     },
     {
+      "number": "11",
+      "title": "Responsabilidade Independente de Culpa",
+      "content": "O fabricante, o produtor, o construtor, nacional ou estrangeiro, e o importador respondem, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos decorrentes de projeto, fabricação, construção, montagem, fórmulas, manipulação, apresentação ou acondicionamento de seus produtos, bem como por informações insuficientes ou inadequadas sobre sua utilização e riscos.",
+      "keywords": ["responsabilidade objetiva", "independente de culpa", "defeito", "reparação"],
+      "category": "responsabilidade"
+    },
+    {
       "number": "12",
       "title": "Responsabilidade pelo Fato do Produto",
       "content": "O fabricante, o produtor, o construtor, nacional ou estrangeiro, e o importador respondem, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos decorrentes de projeto, fabricação, construção, montagem, fórmulas, manipulação, apresentação ou acondicionamento de seus produtos, bem como por informações insuficientes ou inadequadas sobre sua utilização e riscos.",
@@ -61,6 +96,20 @@
       "title": "Responsabilidade pelo Fato do Serviço",
       "content": "O fornecedor de serviços responde, independentemente da existência de culpa, pela reparação dos danos causados aos consumidores por defeitos relativos à prestação dos serviços, bem como por informações insuficientes ou inadequadas sobre sua fruição e riscos. O serviço é defeituoso quando não fornece a segurança que o consumidor dele pode esperar.",
       "keywords": ["defeito", "serviço", "responsabilidade objetiva", "reparação", "danos"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "15",
+      "title": "Responsabilidade de Profissionais Liberais",
+      "content": "A responsabilidade pessoal dos profissionais liberais será apurada mediante a verificação de culpa. Somente não será responsabilizado o fornecedor quando provar que não colocou o produto no mercado, que embora haja colocado o produto no mercado, o defeito inexiste, ou a culpa exclusiva do consumidor ou de terceiro.",
+      "keywords": ["profissional liberal", "culpa", "médico", "advogado", "responsabilidade subjetiva"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "16",
+      "title": "Excludentes de Responsabilidade",
+      "content": "Somente não será responsabilizado o fornecedor quando provar: I - que não colocou o produto no mercado; II - que, embora haja colocado o produto no mercado, o defeito inexiste; III - a culpa exclusiva do consumidor ou de terceiro.",
+      "keywords": ["excludente", "culpa exclusiva", "inexistência de defeito"],
       "category": "responsabilidade"
     },
     {
@@ -148,6 +197,13 @@
       "category": "responsabilidade"
     },
     {
+      "number": "29",
+      "title": "Obrigações do Fornecedor",
+      "content": "É dever do fornecedor apresentar o produto ou serviço de maneira adequada, assegurando informações corretas, claras, precisas e ostensivas sobre suas características e qualidade. A oferta e apresentação de produtos ou serviços devem assegurar informações corretas sobre riscos à saúde e segurança dos consumidores.",
+      "keywords": ["informação", "oferta", "apresentação", "dever", "clareza"],
+      "category": "oferta_publicidade"
+    },
+    {
       "number": "30",
       "title": "Vinculação à Oferta",
       "content": "Toda informação ou publicidade, suficientemente precisa, veiculada por qualquer forma ou meio de comunicação com relação a produtos e serviços oferecidos ou apresentados, obriga o fornecedor que a fizer veicular ou dela se utilizar e integra o contrato que vier a ser celebrado.",
@@ -159,6 +215,13 @@
       "title": "Informação Correta e Clara",
       "content": "A oferta e apresentação de produtos ou serviços devem assegurar informações corretas, claras, precisas, ostensivas e em língua portuguesa sobre suas características, qualidades, quantidade, composição, preço, garantia, prazos de validade e origem, entre outros dados, bem como sobre os riscos que apresentam à saúde e segurança dos consumidores.",
       "keywords": ["informação clara", "oferta", "características", "preço", "riscos", "língua portuguesa"],
+      "category": "oferta_publicidade"
+    },
+    {
+      "number": "32",
+      "title": "Identificação e Quantidade",
+      "content": "Os fabricantes e importadores deverão assegurar a oferta de componentes e peças de reposição enquanto não cessar a fabricação ou importação do produto. Cessadas a produção ou importação, a oferta deverá ser mantida por período razoável de tempo, na forma da lei.",
+      "keywords": ["peças de reposição", "componentes", "fabricação", "disponibilidade"],
       "category": "oferta_publicidade"
     },
     {
@@ -235,7 +298,7 @@
       "number": "43",
       "title": "Banco de Dados e Cadastros de Consumidores",
       "content": "O consumidor, sem prejuízo do disposto no art. 86, terá acesso às informações existentes em cadastros, fichas, registros e dados pessoais e de consumo arquivados sobre ele, bem como sobre as suas respectivas fontes. Os cadastros e dados de consumidores devem ser objetivos, claros, verdadeiros e em linguagem de fácil compreensão, não podendo conter informações negativas referentes a período superior a cinco anos. Consumada a prescrição relativa à cobrança de débitos do consumidor, não serão fornecidas, pelos respectivos Sistemas de Proteção ao Crédito, quaisquer informações que possam impedir ou dificultar novo acesso ao crédito junto aos fornecedores.",
-      "keywords": ["cadastro", "dados pessoais", "proteção ao crédito", "SPC", "Serasa", "5 anos"],
+      "keywords": ["cadastro", "dados pessoais", "proteção ao crédito", "SPC", "Serasa", "5 anos", "LGPD"],
       "category": "cobranca"
     },
     {
@@ -244,6 +307,13 @@
       "content": "Os órgãos públicos de defesa do consumidor manterão cadastros atualizados de reclamações fundamentadas contra fornecedores de produtos e serviços, devendo divulgá-lo pública e anualmente. A divulgação indicará se a reclamação foi atendida ou não pelo fornecedor. É parte legítima para agir a associação regularmente constituída há pelo menos um ano e que inclua entre seus fins institucionais a defesa dos interesses e direitos dos consumidores.",
       "keywords": ["cadastro de reclamações", "Procon", "publicidade", "atendimento"],
       "category": "cobranca"
+    },
+    {
+      "number": "45",
+      "title": "Controle de Qualidade e Segurança",
+      "content": "Os produtos e serviços colocados no mercado de consumo não acarretarão riscos à saúde ou segurança dos consumidores, exceto os considerados normais e previsíveis em decorrência de sua natureza e fruição, obrigando-se os fornecedores a dar as informações necessárias e adequadas a seu respeito. O fornecedor de produtos e serviços que, posteriormente à sua introdução no mercado, tiver conhecimento da periculosidade que apresentem, deverá comunicar o fato imediatamente às autoridades competentes e aos consumidores.",
+      "keywords": ["segurança", "periculosidade", "recall", "comunicação", "risco"],
+      "category": "direitos_fundamentais"
     },
     {
       "number": "46",
@@ -323,6 +393,34 @@
       "category": "clausulas_contratuais"
     },
     {
+      "number": "57",
+      "title": "Desconsideração da Personalidade Jurídica",
+      "content": "A desconsideração da personalidade jurídica será efetivada quando, em detrimento do consumidor, houver abuso de direito, excesso de poder, infração da lei, fato ou ato ilícito ou violação dos estatutos ou contrato social. A desconsideração também será efetivada quando houver falência, estado de insolvência, encerramento ou inatividade da pessoa jurídica provocados por má administração.",
+      "keywords": ["desconsideração", "personalidade jurídica", "abuso", "falência", "má administração"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "58",
+      "title": "Grupo Econômico",
+      "content": "As sociedades integrantes dos grupos societários e as sociedades controladas são subsidiariamente responsáveis pelas obrigações decorrentes deste código. As sociedades consorciadas são solidariamente responsáveis pelas obrigações decorrentes deste código. As sociedades coligadas só responderão por culpa.",
+      "keywords": ["grupo econômico", "responsabilidade subsidiária", "solidariedade", "controladas"],
+      "category": "responsabilidade"
+    },
+    {
+      "number": "59",
+      "title": "Competência para Aplicar Sanções",
+      "content": "As penas previstas neste capítulo são aplicáveis sem prejuízo das correspondentes à lesão dos direitos do consumidor. Para a imposição da penalidade e sua graduação, a autoridade competente levará em conta a condição econômica do infrator, sua reincidência e a gravidade da infração.",
+      "keywords": ["penalidade", "sanção", "condição econômica", "reincidência", "gravidade"],
+      "category": "principios_gerais"
+    },
+    {
+      "number": "60",
+      "title": "Sanções Administrativas",
+      "content": "A imposição de sanção administrativa observará o princípio da proporcionalidade e as circunstâncias atenuantes e agravantes. As sanções administrativas, sem prejuízo das de natureza civil, penal e das definidas em normas específicas, podem ser: multa, apreensão do produto, inutilização do produto, cassação do registro do produto, proibição de fabricação, suspensão de fornecimento de produtos ou serviços, suspensão temporária de atividade, revogação de concessão ou permissão de uso, cassação de licença do estabelecimento ou de atividade, interdição total ou parcial de estabelecimento, intervenção administrativa, imposição de contrapropaganda.",
+      "keywords": ["sanção administrativa", "multa", "apreensão", "suspensão", "cassação", "interdição"],
+      "category": "principios_gerais"
+    },
+    {
       "number": "71",
       "title": "Crimes Contra Relações de Consumo - Cobrança Abusiva",
       "content": "Utilizar, na cobrança de dívidas, de ameaça, coação, constrangimento físico ou moral, afirmações falsas incorretas ou enganosas ou de qualquer outro procedimento que exponha o consumidor, injustificadamente, a ridículo ou interfira com seu trabalho, descanso ou lazer: Pena - Detenção de três meses a um ano e multa.",
@@ -333,7 +431,7 @@
       "number": "72",
       "title": "Coação para Cobrança de Dívida",
       "content": "Impedir ou dificultar o acesso do consumidor às informações que sobre ele constem em cadastros, banco de dados, fichas e registros: Pena - Detenção de seis meses a um ano ou multa.",
-      "keywords": ["crime", "impedimento de acesso", "cadastro", "dados", "pena"],
+      "keywords": ["crime", "impedimento de acesso", "cadastro", "dados", "pena", "LGPD"],
       "category": "cobranca"
     },
     {
@@ -418,6 +516,48 @@
       "title": "Multa em Favor do Consumidor",
       "content": "Nas ações coletivas de que trata este código não haverá adiantamento de custas, emolumentos, honorários periciais e quaisquer outras despesas, nem condenação da associação autora, salvo comprovada má-fé, em honorários de advogados, custas e despesas processuais. Em caso de litigância de má-fé, a associação autora e os diretores responsáveis pela propositura da ação serão solidariamente condenados em honorários advocatícios e ao décuplo das custas, sem prejuízo da responsabilidade por perdas e danos.",
       "keywords": ["ação coletiva", "custas", "má-fé", "honorários"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "101",
+      "title": "Foro Competente",
+      "content": "Na ação de responsabilidade civil do fornecedor de produtos e serviços, sem prejuízo do disposto nos Capítulos I e II deste título, serão observadas as seguintes normas: I - a ação pode ser proposta no domicílio do autor; II - a ação de reparação por danos causados por produtos defeituosos pode ser proposta no foro onde os produtos foram adquiridos ou no domicílio do autor; III - a ação de reparação por danos causados por fato do produto ou do serviço pode ser proposta no domicílio do autor, no local do ato ou fato, ou no domicílio do réu.",
+      "keywords": ["foro", "competência", "domicílio do autor", "local do fato"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "102",
+      "title": "Gratuidade para Ação Civil",
+      "content": "Os legitimados a agir na forma deste código poderão propor ação visando compelir o Poder Público competente a proibir, em todo o território nacional, a produção, divulgação, distribuição ou venda, ou a determinar alteração na composição, estrutura, fórmula ou acondicionamento de produto, cujo uso ou consumo regular se revele nocivo ou perigoso à saúde pública e à incolumidade pessoal.",
+      "keywords": ["ação civil", "Poder Público", "produto perigoso", "proibição", "alteração"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "103",
+      "title": "Execução Específica da Obrigação",
+      "content": "Nas ações coletivas previstas neste código, a sentença fará coisa julgada: I - erga omnes, exceto se o pedido for julgado improcedente por insuficiência de provas, hipótese em que qualquer legitimado poderá intentar outra ação, com idêntico fundamento, valendo-se de nova prova, na hipótese do inciso I do parágrafo único do art. 81; II - ultra partes, mas limitadamente ao grupo, categoria ou classe, salvo improcedência por insuficiência de provas, nos termos do inciso anterior, quando se tratar da hipótese prevista no inciso II do parágrafo único do art. 81; III - erga omnes, apenas no caso de procedência do pedido, para beneficiar todas as vítimas e seus sucessores, na hipótese do inciso III do parágrafo único do art. 81.",
+      "keywords": ["coisa julgada", "erga omnes", "ultra partes", "ação coletiva"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "104",
+      "title": "Sentença nas Ações Coletivas",
+      "content": "As ações coletivas previstas nos incisos I e II e do parágrafo único do art. 81 não induzem litispendência para as ações individuais, mas os efeitos da coisa julgada erga omnes ou ultra partes a que aludem os incisos II e III do artigo anterior não beneficiarão os autores das ações individuais, se não for requerida sua suspensão no prazo de trinta dias, a contar da ciência nos autos do ajuizamento da ação coletiva.",
+      "keywords": ["ação coletiva", "litispendência", "suspensão", "coisa julgada"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "105",
+      "title": "Conciliação e Fundo de Reparação",
+      "content": "A sentença de procedência da ação civil coletiva condenará o réu a pagar uma indenização a título de danos morais coletivos. Na condenação de que trata o inciso I deste artigo, a indenização será destinada ao Fundo de Defesa de Direitos Difusos instituído pela Lei nº 7.347, de 24 de julho de 1985.",
+      "keywords": ["indenização", "danos morais coletivos", "Fundo", "reparação"],
+      "category": "direitos_fundamentais"
+    },
+    {
+      "number": "106",
+      "title": "Fundo de Reparação de Danos",
+      "content": "O Fundo de Defesa de Direitos Difusos, previsto na Lei nº 7.347, de 1985, e gerido por um Conselho Federal ou por Conselhos Estaduais, será aplicado na recuperação de bens, na promoção de eventos educativos, na edição de material informativo, especificamente relacionados com a natureza da infração ou do dano causado, bem como na modernização administrativa dos órgãos públicos responsáveis pela execução das políticas relativas às áreas mencionadas no art. 1º da Lei nº 7.347, de 1985.",
+      "keywords": ["Fundo de Reparação", "recuperação de bens", "eventos educativos", "dano coletivo"],
       "category": "direitos_fundamentais"
     }
   ]

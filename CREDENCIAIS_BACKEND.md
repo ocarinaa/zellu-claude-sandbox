@@ -239,14 +239,15 @@ AI_API_KEY=1e2aa5442595cd14ae0b9ce3fc11282db68f13178b3638c494071af4f5eef798
 - [x] Sistema de checkpoints (Redis)
 - [x] Envio de callbacks assíncronos
 - [x] Geração de `analysis_data` completo
-- [x] RAG com 60 artigos CDC
-- [x] Heurísticas de recomendação
+- [x] RAG com 90 artigos CDC (expandido de 60)
+- [x] Heurísticas com jurisprudência aplicada (STJ/TJs 2020-2024)
 - [x] Upload de documentos com OCR
 - [x] Sistema de tickets completo
 - [x] 54 testes unitários passando
 - [x] Docker Compose pronto (PostgreSQL + Redis)
 - [x] Alembic migrations aplicadas
 - [x] CI/CD com GitHub Actions
+- [x] Criptografia PostgreSQL + conformidade LGPD
 
 ---
 
