@@ -112,7 +112,7 @@ IMPORTANTE:
 """
 
     try:
-        response = llm_client.chat_sync(
+        response = await llm_client.chat(
             messages=messages_with_context,
             system=finalization_prompt,
         )

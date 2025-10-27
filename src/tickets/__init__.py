@@ -9,4 +9,7 @@ Este módulo gerencia todo o ciclo de vida dos tickets:
 - Controle de prazos e SLAs
 """
 
+from .service import TicketService
+
 __version__ = "0.1.0"
+__all__ = ["TicketService"]

@@ -6,7 +6,7 @@ import logging
 
 from .settings import get_settings
 from .schemas import WebhookInput, WebhookResponse, AnalysisData, Recommendation
-from ..api.routes import conversation
+from ..api.routes import conversation, webhook, tickets
 from ..api import endpoints
 from ..database import init_db
 from ..cache import RedisClient
@@ -128,3 +128,9 @@ app.include_router(conversation.router, prefix="/api/v1")
 
 # Rotas novas com persistência
 app.include_router(endpoints.router)
+
+# Webhook integration com Zellu App
+app.include_router(webhook.router)
+
+# Sistema de Tickets
+app.include_router(tickets.router)

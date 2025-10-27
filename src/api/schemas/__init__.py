@@ -6,7 +6,7 @@ from typing import Optional, Literal
 from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
 
-from ..conversation.schemas import AnalysisData, Message
+from src.conversation.schemas import AnalysisData, Message
 
 
 # === Request Schemas ===
