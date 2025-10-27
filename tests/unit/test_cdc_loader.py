@@ -8,8 +8,8 @@ from src.rag import CDCKnowledgeBase
 
 def test_load_cdc_articles(cdc_kb):
     """Testa carregamento de artigos CDC."""
-    assert len(cdc_kb.articles) == 10
-    assert cdc_kb.articles[0].number == "6"
+    assert len(cdc_kb.articles) == 60
+    assert cdc_kb.articles[0].number == "4"
 
 
 def test_get_article_by_number(cdc_kb):
