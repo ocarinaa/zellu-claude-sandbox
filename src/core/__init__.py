@@ -17,6 +17,7 @@ from .nodes import (
     analyzer_node,
     finisher_node,
 )
+from .checkpoint import CheckpointService, get_checkpoint_service
 
 __all__ = [
     # State
@@ -32,4 +33,7 @@ __all__ = [
     "decider_node",
     "analyzer_node",
     "finisher_node",
+    # Checkpoint
+    "CheckpointService",
+    "get_checkpoint_service",
 ]

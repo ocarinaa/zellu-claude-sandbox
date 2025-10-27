@@ -30,6 +30,11 @@ async def collector_node(
     """
     logger.info(f"[COLLECTOR] Processando mensagem (turn {state['turn_count']})")
 
+    # Salva checkpoint antes de processar (recuperação em caso de falha)
+    from ..checkpoint import get_checkpoint_service
+    checkpoint = get_checkpoint_service()
+    await checkpoint.save(state["chat_id"], state, auto=True)
+
     # Pega última mensagem do usuário
     last_user_message = state["messages"][-1]["content"]
 
@@ -105,6 +110,9 @@ Mantenha conversa natural e empática enquanto coleta essas informações.
     state["current_step"] = "validate"
 
     logger.info(f"[COLLECTOR] Confidence score: {extracted.confidence_score:.2f}")
+
+    # Salva checkpoint após processar
+    await checkpoint.save(state["chat_id"], state, auto=True)
 
     return state
 

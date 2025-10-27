@@ -30,6 +30,11 @@ async def finisher_node(
     """
     logger.info("[FINISHER] Gerando analysis_data com RAG + Heurísticas")
 
+    # Checkpoint antes da finalização
+    from ..checkpoint import get_checkpoint_service
+    checkpoint = get_checkpoint_service()
+    await checkpoint.save(state["chat_id"], state, auto=True)
+
     extracted = state["extracted_info"]
     relevant_articles = state.get("relevant_cdc_articles", [])
 
@@ -136,6 +141,9 @@ IMPORTANTE:
         state["analysis_data"] = analysis_dict
         state["current_step"] = "done"
 
+        # Checkpoint final (conversa completa)
+        await checkpoint.save(state["chat_id"], state, auto=True)
+
         return state
 
     except Exception as e:
@@ -174,6 +182,9 @@ IMPORTANTE:
 
         state["analysis_data"] = fallback_analysis.model_dump()
         state["current_step"] = "done"
+
+        # Checkpoint fallback
+        await checkpoint.save(state["chat_id"], state, auto=True)
 
         return state
 
