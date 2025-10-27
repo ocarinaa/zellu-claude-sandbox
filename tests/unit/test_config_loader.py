@@ -48,8 +48,8 @@ def test_estimator_settings():
     assert "max_value" in settings
     assert "bonus_multipliers" in settings
 
-    assert settings["min_value"] == 500
-    assert settings["max_value"] == 50000
+    assert settings["min_value"] == 1000
+    assert settings["max_value"] == 80000
 
 
 def test_recommendation_scores():
@@ -206,7 +206,7 @@ def test_reason_templates():
     ("42", 2.0),
     ("6", 1.0),
     ("14", 1.5),
-    ("71", 2.0),
+    ("71", 2.5),  # Atualizado - cobrança abusiva criminal tem multiplier maior
 ])
 def test_cdc_rules_multipliers(article_number, expected_multiplier):
     """Testa multipliers específicos de artigos."""
@@ -218,12 +218,12 @@ def test_cdc_rules_multipliers(article_number, expected_multiplier):
 
 
 @pytest.mark.parametrize("article_number,min_moral_damage", [
-    ("42", 2000.0),
-    ("6", 3000.0),
-    ("71", 5000.0),
+    ("42", 5000.0),  # Atualizado com jurisprudência STJ REsp 1.737.428
+    ("6", 7000.0),   # Atualizado com jurisprudência STJ REsp 1.651.893
+    ("71", 12000.0), # Atualizado com jurisprudência STJ REsp 1.753.069
 ])
 def test_cdc_rules_moral_damage(article_number, min_moral_damage):
-    """Testa valores de dano moral."""
+    """Testa valores de dano moral baseados em jurisprudência."""
     config = RulesConfigLoader()
 
     rule = config.get_cdc_rule(article_number)

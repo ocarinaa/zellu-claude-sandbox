@@ -7,7 +7,7 @@ from src.calculators import ValueEstimator
 
 
 def test_calculate_with_monetary_value(value_estimator, sample_cdc_articles):
-    """Testa cálculo com valor monetário."""
+    """Testa cálculo com valor monetário (jurisprudência aplicada)."""
     result = value_estimator.calculate(
         monetary_value=100.0,
         relevant_articles=sample_cdc_articles,
@@ -15,24 +15,24 @@ def test_calculate_with_monetary_value(value_estimator, sample_cdc_articles):
     )
 
     # Art. 42 tem multiplier 2.0 → 100 * 2 = 200 (material)
-    # Art. 42 tem moral_damage_base 2000
-    # Art. 6 tem moral_damage_base 3000
-    # Total esperado: 200 + 2000 + 3000 = 5200
+    # Art. 42 tem moral_damage_base 5000 (STJ REsp 1.737.428)
+    # Art. 6 tem moral_damage_base 7000 (STJ REsp 1.651.893)
+    # Total esperado: 200 + 5000 + 7000 = 12200
 
-    assert result > 5000
-    assert result < 6000
+    assert result > 12000
+    assert result < 13000
 
 
 def test_calculate_without_monetary_value(value_estimator, sample_cdc_articles):
-    """Testa cálculo sem valor monetário (só dano moral)."""
+    """Testa cálculo sem valor monetário (só dano moral com jurisprudência)."""
     result = value_estimator.calculate(
         monetary_value=None,
         relevant_articles=sample_cdc_articles,
         has_documents=False,
     )
 
-    # Só danos morais: 2000 + 3000 = 5000
-    assert result >= 5000
+    # Só danos morais: 5000 + 7000 = 12000
+    assert result >= 12000
 
 
 def test_calculate_with_documents_bonus(value_estimator, sample_cdc_articles):
