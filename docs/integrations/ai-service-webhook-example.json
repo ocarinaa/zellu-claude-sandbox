@@ -1,0 +1,176 @@
+{
+  "name": "Zellu Chat Webhook - Complete Example v3.1",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "zellu-chat-webhook-v3.1"
+  },
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook - Receber do Zellu",
+      "type": "ia-service-nodes.webhook",
+      "position": [250, 300],
+      "webhookId": "unique-webhook-id",
+      "notes": "📥 Recebe POST do Zellu App com mensagens do usuário.\n\nPayload esperado:\n- chat_id: UUID da sessão\n- nome: Nome do usuário\n- message_type: 'text' | 'audio' | 'file' | 'mixed'\n- body_message: Texto da mensagem\n- audio: Array de URLs (ou null)\n- files: Array de URLs de arquivos\n\n📖 Docs: AI_SERVICE_WEBHOOK_FORMAT.md"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.message_type}}",
+              "operation": "equals",
+              "value2": "text"
+            }
+          ]
+        }
+      },
+      "name": "É texto?",
+      "type": "ia-service-nodes.if",
+      "position": [450, 300],
+      "notes": "🔍 Filtra apenas mensagens de texto.\n\nSe não for texto:\n- Implementar lógica para audio (transcrição)\n- Implementar lógica para file (OCR/análise)\n\nPor enquanto, apenas texto passa adiante."
+    },
+    {
+      "parameters": {
+        "model": "gpt-4",
+        "prompt": "={{$json.body_message}}",
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 1000
+        }
+      },
+      "name": "Processar com IA",
+      "type": "ia-service-nodes.openAi",
+      "position": [650, 200],
+      "notes": "🤖 Processa mensagem com OpenAI GPT-4.\n\n⚙️ Configurações:\n- Temperature: 0.7 (criativo mas focado)\n- Max Tokens: 1000\n\n💡 Dica: Substitua por Claude, Gemini, ou outro LLM se preferir.\n\n📋 Próximos passos:\n- Adicionar system prompt para extrair informações\n- Implementar lógica de análise de direitos\n- Gerar analysis_data quando pronto"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ═══════════════════════════════════════════════════════════════\n// ZELLU CHAT - Formatação de Resposta da IA\n// Versão: 3.1 (com suporte a Group Messages)\n// Documentação: docs/AI_SERVICE_WEBHOOK_FORMAT.md\n// ═══════════════════════════════════════════════════════════════\n\nconst response = $input.first().json.response;\nconst chatId = $('Webhook - Receber do Zellu').first().json.chat_id;\n\n// Detectar se deve finalizar análise\nconst shouldFinish = response.toLowerCase().includes('criar chamado') || \n                     response.toLowerCase().includes('abrir ticket');\n\n// ─────────────────────────────────────────────────────────────\n// 📌 CENÁRIO 1: MENSAGEM SIMPLES (Recomendado para começar)\n// ─────────────────────────────────────────────────────────────\n// Use este formato para respostas únicas e diretas\n\nconst simpleResponse = {\n  chat_id: chatId,\n  message: response,\n  is_finished: shouldFinish,\n  message_type: 'text',\n  files: [],\n  audio: null,\n  // analysis_data: shouldFinish ? generateAnalysisData() : null\n};\n\n// ─────────────────────────────────────────────────────────────\n// 📌 CENÁRIO 2: GROUP MESSAGES (Mensagens Sequenciais)\n// ─────────────────────────────────────────────────────────────\n// Use este formato para simular \"Digitando...\" como WhatsApp\n// Descomente o bloco abaixo para testar:\n\n/*\nconst groupResponse = {\n  chat_id: chatId,\n  message: \"Processando sua solicitação...\", // Opcional, para referência\n  is_finished: false,\n  group_messages: [\n    {\n      message: \"Entendi sua situação. Deixe-me analisar...\",\n      message_type: \"text\",\n      files: [],\n      audio: null,\n      delay: 0,                    // Sem delay, aparece imediatamente\n      awaiting_continuation: true, // Bloqueia input, mostra \"Digitando...\"\n      is_finished: false\n    },\n    {\n      message: \"Identifiquei alguns direitos importantes para você...\",\n      delay: 1500,                 // Aguarda 1.5s antes de exibir\n      awaiting_continuation: true, // Continua bloqueado\n      is_finished: false\n    },\n    {\n      message: response,           // Resposta final da IA\n      delay: 2000,                 // Aguarda 2s\n      awaiting_continuation: false,// Última mensagem, desbloqueia input\n      is_finished: shouldFinish,\n      analysis_data: shouldFinish ? generateAnalysisData() : null\n    }\n  ]\n};\n*/\n\n// ─────────────────────────────────────────────────────────────\n// 📌 HELPER: Gerar analysis_data (quando is_finished=true)\n// ─────────────────────────────────────────────────────────────\n\nfunction generateAnalysisData() {\n  return {\n    problem: \"Cobrança indevida após cancelamento de serviço\",\n    rights: [\n      \"Direito à devolução em dobro (CDC, Art. 42)\",\n      \"Direito ao cancelamento sem ônus (CDC, Art. 49)\",\n      \"Direito à indenização por danos morais (CDC, Art. 6º, VI)\"\n    ],\n    estimatedValue: 3598.50,\n    recommendations: [\n      {\n        type: \"amigavel\",\n        score: 9.2,\n        reason: \"Alta chance de resolução rápida\"\n      },\n      {\n        type: \"extrajudicial\",\n        score: 7.5,\n        reason: \"Recomendado se amigável falhar\"\n      },\n      {\n        type: \"judicial\",\n        score: 5.8,\n        reason: \"Última opção, prazo mais longo\"\n      }\n    ],\n    userInfo: {\n      name: \"João Silva\",\n      cpf: \"123.456.789-00\",\n      email: \"joao@email.com\",\n      phone: \"(11) 99999-1111\",\n      address: \"Rua Exemplo, 123 - São Paulo/SP\"\n    },\n    opposingParty: {\n      type: \"pj\",\n      name: \"Empresa XYZ Ltda\",\n      document: \"12.345.678/0001-90\",\n      email: \"contato@xyz.com\",\n      phone: \"(11) 3000-1000\",\n      address: \"Av. Principal, 1000 - São Paulo/SP\"\n    },\n    caseDetails: {\n      title: \"Cobrança Indevida\",\n      description: \"Cliente cancelou mas continua sendo cobrado\",\n      expectedSolution: \"Devolução + cancelamento definitivo\",\n      documents: []\n    }\n  };\n}\n\n// ─────────────────────────────────────────────────────────────\n// 🎯 RETORNO: Escolha o cenário desejado\n// ─────────────────────────────────────────────────────────────\n\nreturn simpleResponse;  // ← Trocar para groupResponse quando estiver pronto\n\n// ═══════════════════════════════════════════════════════════════\n// 📚 NOTAS IMPORTANTES:\n// ═══════════════════════════════════════════════════════════════\n// \n// 1. VALIDAÇÃO FLEXÍVEL: Backend aceita strings ou tipos nativos\n//    - delay: \"1500\" → 1500 (convertido automaticamente)\n//    - awaiting_continuation: \"true\" → true (convertido)\n//\n// 2. isFinished=true: Mensagem NÃO aparece no chat, apenas analysis_data\n//    - Frontend filtra mensagens com isFinished=true\n//    - Dialog de análise abre automaticamente\n//\n// 3. SESSION LIFECYCLE: Após isFinished=true, sessão pode ser:\n//    - status: 'completed' (usuário escolheu solução)\n//    - status: 'cancelled' (usuário não escolheu)\n//    - Motivos: inactivity_timeout, user_abandoned, no_solution_selected\n//\n// 4. LIMITES:\n//    - delay: 0 a 10000ms (0-10s recomendado para UX)\n//    - group_messages: até 10 mensagens (sem limite técnico, mas UX)\n//\n// 📖 Documentação completa: docs/AI_SERVICE_WEBHOOK_FORMAT.md\n"
+      },
+      "name": "Formatar Resposta",
+      "type": "ia-service-nodes.code",
+      "position": [850, 200],
+      "notes": "📝 Formata resposta da IA para o formato Zellu.\n\n🎯 CENÁRIOS DISPONÍVEIS:\n1️⃣ SIMPLES: Mensagem única (ativo)\n2️⃣ GROUP: Múltiplas mensagens com delays (comentado)\n\n⚙️ COMO USAR:\n- Cenário 1: Já está ativo, use para começar\n- Cenário 2: Descomente 'groupResponse' no código\n- Trocar 'return simpleResponse' → 'return groupResponse'\n\n💡 FEATURES:\n- analysis_data completo (quando is_finished=true)\n- Delays configuráveis (0-10s)\n- awaiting_continuation (bloqueia input)\n- Validação flexível de tipos\n\n📖 Ver código para documentação inline completa"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8655/api/chat/webhook",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "sua-api-key-aqui"
+            }
+          ]
+        },
+        "options": {
+          "bodyContentType": "json"
+        },
+        "bodyParametersJson": "={{JSON.stringify($json)}}"
+      },
+      "name": "Enviar para Zellu",
+      "type": "ia-service-nodes.httpRequest",
+      "position": [1050, 200],
+      "notes": "📤 Envia resposta formatada de volta ao Zellu.\n\n⚠️ IMPORTANTE:\n- Header 'x-api-key' é OBRIGATÓRIO\n- Valor deve corresponder a API_KEY_ZELLU_IA do .env\n\n🔧 CONFIGURAÇÃO:\n1. Criar credencial \"HTTP Header Auth\"\n2. Nome: x-api-key\n3. Valor: copiar do .env do Zellu\n\n🌐 URLs:\n- Dev: http://localhost:8655/api/chat/webhook\n- Prod: https://zellu-app.com/api/chat/webhook\n\n✅ VALIDAÇÕES:\n- 200: Sucesso\n- 401: API key inválida\n- 404: chat_id não encontrado\n- 400: Payload inválido"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"status\": \"success\", \"message\": \"Mensagem processada com sucesso\"}"
+      },
+      "name": "Responder Webhook",
+      "type": "ia-service-nodes.respondToWebhook",
+      "position": [1250, 200],
+      "notes": "✅ Retorna 200 OK ao Zellu.\n\n📋 Response:\n{\n  \"status\": \"success\",\n  \"message\": \"Mensagem processada\"\n}\n\n💡 Este node SEMPRE executa, mesmo se houver erro.\nErros devem ser tratados com Try/Catch antes."
+    }
+  ],
+  "connections": {
+    "Webhook - Receber do Zellu": {
+      "main": [
+        [
+          {
+            "node": "É texto?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É texto?": {
+      "main": [
+        [
+          {
+            "node": "Processar com IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Processar com IA": {
+      "main": [
+        [
+          {
+            "node": "Formatar Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatar Resposta": {
+      "main": [
+        [
+          {
+            "node": "Enviar para Zellu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar para Zellu": {
+      "main": [
+        [
+          {
+            "node": "Responder Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-10-21T00:00:00.000Z",
+      "updatedAt": "2025-10-21T00:00:00.000Z",
+      "id": "1",
+      "name": "Zellu"
+    },
+    {
+      "createdAt": "2025-10-21T00:00:00.000Z",
+      "updatedAt": "2025-10-21T00:00:00.000Z",
+      "id": "2",
+      "name": "Chat"
+    }
+  ],
+  "pinData": {},
+  "versionId": "v3.1.0",
+  "triggerCount": 0,
+  "active": false
+}
