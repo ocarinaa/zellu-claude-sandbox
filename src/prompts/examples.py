@@ -53,6 +53,69 @@ CONVERSATION_EXAMPLES = [
                 "content": "Smart Fit, março/2024. Você tem o protocolo do cancelamento? Isso vai fortalecer muito seu caso."
             }
         ]
+    },
+    {
+        "scenario": "produto_defeituoso",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Comprei um celular que veio com defeito"
+            },
+            {
+                "role": "assistant",
+                "content": "Que chato isso 😕 Produto com defeito é garantido por lei. Onde você comprou e há quanto tempo?"
+            },
+            {
+                "role": "user",
+                "content": "Na Magazine Luiza, há 2 meses"
+            },
+            {
+                "role": "assistant",
+                "content": "Magazine Luiza, 2 meses atrás. Você já levou na assistência técnica? O que eles disseram?"
+            }
+        ]
+    },
+    {
+        "scenario": "usuario_confuso",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Não sei bem o que aconteceu, só sei que estou com problema"
+            },
+            {
+                "role": "assistant",
+                "content": "Sem problemas, vamos descobrir juntos 💙 Me conta: o problema é com alguma compra, serviço ou cobrança?"
+            },
+            {
+                "role": "user",
+                "content": "Acho que é cobrança... não tenho certeza"
+            },
+            {
+                "role": "assistant",
+                "content": "Ok! Você recebeu alguma cobrança que não esperava? De qual empresa?"
+            }
+        ]
+    },
+    {
+        "scenario": "usuario_irritado",
+        "messages": [
+            {
+                "role": "user",
+                "content": "Essa empresa é uma piada! Já tentei resolver 5 vezes e nada!"
+            },
+            {
+                "role": "assistant",
+                "content": "Entendo perfeitamente sua frustração 😔 É revoltante quando a empresa não resolve. Qual empresa é essa e o que aconteceu?"
+            },
+            {
+                "role": "user",
+                "content": "Vivo! Me cobraram serviços que nunca contratei"
+            },
+            {
+                "role": "assistant",
+                "content": "Vivo, serviços não contratados. Você tem os protocolos dessas 5 tentativas? Isso vai ajudar muito no seu caso."
+            }
+        ]
     }
 ]
 

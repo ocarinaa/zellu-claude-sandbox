@@ -63,7 +63,9 @@ async def collector_node(
 
         return state
 
-    # System prompt com foco em extração
+    # System prompt com foco em extração + few-shot examples
+    from ...prompts import get_few_shot_prompt
+
     extraction_prompt = f"""{get_system_prompt(state['tone'])}
 
 TAREFA ADICIONAL: Enquanto conversa, extraia as seguintes informações:
@@ -75,10 +77,12 @@ TAREFA ADICIONAL: Enquanto conversa, extraia as seguintes informações:
 - Dados do usuário (nome, CPF, email, telefone)
 
 Mantenha conversa natural e empática enquanto coleta essas informações.
+
+{get_few_shot_prompt()}
 """
 
-    # Gera resposta
-    response = llm_client.chat(
+    # Gera resposta (usa chat_sync para compatibilidade com cache)
+    response = llm_client.chat_sync(
         messages=state["messages"],
         system=extraction_prompt,
     )
@@ -141,7 +145,8 @@ REGRAS:
     # Pega últimas 10 mensagens (contexto suficiente)
     recent_messages = messages[-10:]
 
-    response = llm_client.chat(
+    # Usa chat_sync para compatibilidade com cache
+    response = llm_client.chat_sync(
         messages=recent_messages,
         system=extraction_prompt,
     )

@@ -16,6 +16,7 @@ from .exceptions import (
     LLMTimeoutError,
     AllProvidersFailedError,
 )
+from .cache import LLMCache
 
 load_dotenv()
 
@@ -39,6 +40,8 @@ class LLMClient:
         enable_fallback: bool = True,
         max_retries: int = 3,
         timeout: int = 30,
+        enable_cache: bool = True,
+        cache_ttl: int = 3600,
     ):
         """
         Inicializa cliente LLM.
@@ -48,15 +51,19 @@ class LLMClient:
             enable_fallback: Se True, tenta outro provider em caso de falha
             max_retries: Tentativas por provider
             timeout: Timeout em segundos
+            enable_cache: Se True, usa cache Redis
+            cache_ttl: TTL do cache em segundos (padrão: 1h)
         """
         self.primary_provider = primary_provider
         self.enable_fallback = enable_fallback
         self.max_retries = max_retries
         self.timeout = timeout
+        self.enable_cache = enable_cache
 
         # Inicializa clients
         self._anthropic_client = None
         self._openai_client = None
+        self._cache = LLMCache(ttl=cache_ttl) if enable_cache else None
         self._init_clients()
 
     def _init_clients(self) -> None:
@@ -76,7 +83,7 @@ class LLMClient:
                 "Configure ANTHROPIC_API_KEY ou OPENAI_API_KEY no .env"
             )
 
-    def chat(
+    async def chat(
         self,
         messages: list[dict[str, str]],
         system: str | None = None,
@@ -99,16 +106,28 @@ class LLMClient:
         if config is None:
             config = get_config(self.primary_provider)
 
+        # Tenta buscar no cache primeiro
+        if self._cache:
+            cached = await self._cache.get(messages, system, config.provider)
+            if cached:
+                return cached
+
         errors = {}
 
         # Tenta primary provider
         try:
-            return self._call_provider(
+            response = self._call_provider(
                 provider=config.provider,
                 messages=messages,
                 system=system,
                 config=config,
             )
+
+            # Salva no cache
+            if self._cache:
+                await self._cache.set(messages, system, config.provider, response)
+
+            return response
         except Exception as e:
             errors[config.provider] = e
 
@@ -118,16 +137,54 @@ class LLMClient:
             fallback_config = get_config(fallback_provider)
 
             try:
-                return self._call_provider(
+                response = self._call_provider(
                     provider=fallback_provider,
                     messages=messages,
                     system=system,
                     config=fallback_config,
                 )
+
+                # Salva no cache
+                if self._cache:
+                    await self._cache.set(messages, system, fallback_provider, response)
+
+                return response
             except Exception as e:
                 errors[fallback_provider] = e
 
         raise AllProvidersFailedError(errors)
+
+    def chat_sync(
+        self,
+        messages: list[dict[str, str]],
+        system: str | None = None,
+        config: LLMConfig | None = None,
+    ) -> str:
+        """
+        Versão síncrona do chat (para compatibilidade).
+        Usa cache internamente via asyncio.
+
+        Args:
+            messages: Lista de mensagens
+            system: System prompt
+            config: Configuração customizada
+
+        Returns:
+            Resposta do LLM
+        """
+        import asyncio
+
+        # Tenta usar loop existente
+        try:
+            loop = asyncio.get_running_loop()
+            # Já estamos em um loop async, usa await
+            return asyncio.run_coroutine_threadsafe(
+                self.chat(messages, system, config),
+                loop
+            ).result()
+        except RuntimeError:
+            # Não há loop rodando, cria um novo
+            return asyncio.run(self.chat(messages, system, config))
 
     def chat_stream(
         self,

@@ -2,6 +2,7 @@
 
 from .config import LLMConfig, LLMProvider, get_config, CLAUDE_CONFIG, OPENAI_CONFIG
 from .client import LLMClient
+from .cache import LLMCache
 from .exceptions import (
     LLMError,
     LLMProviderError,
@@ -19,6 +20,7 @@ __all__ = [
     "OPENAI_CONFIG",
     # Client
     "LLMClient",
+    "LLMCache",
     # Exceptions
     "LLMError",
     "LLMProviderError",
