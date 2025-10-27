@@ -14,6 +14,18 @@ Frontend Zellu → Backend Zellu → Webhook → Python IA Service
                                      Callback → Backend Zellu → Frontend
 ```
 
+### Capacidades da IA
+
+A IA processa conversas com as seguintes tecnologias:
+
+- **LangGraph:** 5 nodes (collector, validator, decider, analyzer, finisher)
+- **RAG:** 90 artigos do CDC (Código de Defesa do Consumidor)
+- **Jurisprudência:** Valores baseados em decisões reais do STJ e TJs (2020-2024)
+- **Heurísticas:** Cálculo automático de valores e recomendações inteligentes
+- **OCR:** Processamento de documentos (PDFs e imagens)
+- **Checkpoints:** Memória de contexto com Redis
+- **Sistema de Tickets:** Criação automática quando conversa finaliza
+
 ## Arquivos Criados/Modificados
 
 ### 1. **src/api/routes/webhook.py** (NOVO)
@@ -212,7 +224,9 @@ Quando `is_finished: true`:
 - Se ambos verdadeiros → finaliza
 
 ### 5. Análise Final (se finalizar)
-- Busca artigos CDC relevantes
+- Busca artigos CDC relevantes (RAG com 90 artigos)
+- Aplica jurisprudência consolidada (STJ/TJs 2020-2024)
+- Calcula valores baseados em casos reais
 - Executa `finisher_node`
 - Gera analysis_data completo
 
