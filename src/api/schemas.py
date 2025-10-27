@@ -4,7 +4,7 @@ Schemas de Request/Response para API REST.
 
 from typing import Optional, Literal
 from datetime import datetime
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 from ..conversation.schemas import AnalysisData, Message
 
@@ -16,12 +16,13 @@ class StartConversationRequest(BaseModel):
 
     tone: Optional[Literal["conciliador", "formal", "tecnico"]] = "conciliador"
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "tone": "conciliador"
             }
         }
+    )
 
 
 class SendMessageRequest(BaseModel):
@@ -30,13 +31,14 @@ class SendMessageRequest(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
     stream: bool = False
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "message": "Fui cobrado indevidamente pela operadora",
                 "stream": False
             }
         }
+    )
 
 
 # === Response Schemas ===
@@ -49,8 +51,8 @@ class StartConversationResponse(BaseModel):
     created_at: datetime
     message: str = "Conversa iniciada com sucesso"
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "conversation_id": "550e8400-e29b-41d4-a716-446655440000",
                 "tone": "conciliador",
@@ -58,6 +60,7 @@ class StartConversationResponse(BaseModel):
                 "message": "Conversa iniciada com sucesso"
             }
         }
+    )
 
 
 class SendMessageResponse(BaseModel):
@@ -68,8 +71,8 @@ class SendMessageResponse(BaseModel):
     is_finalized: bool
     message_count: int
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "conversation_id": "550e8400-e29b-41d4-a716-446655440000",
                 "message": "Entendo sua frustração. Qual operadora te cobrou?",
@@ -77,6 +80,7 @@ class SendMessageResponse(BaseModel):
                 "message_count": 2
             }
         }
+    )
 
 
 class MessageSchema(BaseModel):
@@ -98,8 +102,8 @@ class GetConversationResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "conversation_id": "550e8400-e29b-41d4-a716-446655440000",
                 "tone": "conciliador",
@@ -121,6 +125,7 @@ class GetConversationResponse(BaseModel):
                 "updated_at": "2024-01-15T10:35:00"
             }
         }
+    )
 
 
 class GetAnalysisResponse(BaseModel):
@@ -130,8 +135,8 @@ class GetAnalysisResponse(BaseModel):
     analysis: Optional[AnalysisData]
     is_finalized: bool
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "conversation_id": "550e8400-e29b-41d4-a716-446655440000",
                 "is_finalized": True,
@@ -152,3 +157,4 @@ class GetAnalysisResponse(BaseModel):
                 }
             }
         }
+    )

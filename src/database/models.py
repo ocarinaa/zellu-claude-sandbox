@@ -6,10 +6,13 @@ from datetime import datetime
 from typing import Optional
 from sqlalchemy import Column, String, Text, DateTime, JSON, Integer, Float, Boolean
 from sqlalchemy.dialects.postgresql import UUID, JSONB
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import DeclarativeBase
 import uuid
 
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    """Base class for all database models."""
+    pass
 
 
 class Conversation(Base):
