@@ -9,9 +9,23 @@
 [![LangGraph](https://img.shields.io/badge/LangGraph-0.0.20-purple.svg)](https://github.com/langchain-ai/langgraph)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](#-licença)
 
-[Funcionalidades](#-funcionalidades-principais) • [Instalação](#-instalação-e-setup) • [Uso](#-como-executar) • [API](#-endpoints-api) • [Testes](#-testes) • [Contribuir](#-contribuindo)
+[Funcionalidades](#-funcionalidades-principais) • [Instalação](#-instalação-e-setup) • [Uso](#-como-executar) • [API](#-endpoints-api) • [Testes](#-testes) • [Contribuir](#-contribuindo) • **[📚 Documentação Técnica Completa](./docs/)**
 
 </div>
+
+---
+
+## 📚 Documentação Técnica Completa
+
+**➡️ Acesse a [Documentação Técnica Completa em `/docs`](./docs/)** para informações detalhadas sobre:
+
+- **[Requisitos de Negócio](./docs/business-requirements.md)** - Problema, proposta de valor, modelo de receita
+- **[Workflow das Soluções](./docs/solutions-workflow.md)** - Detalhamento completo das 3 soluções (Amigável, Extrajudicial, Judicial)
+- **[Status Atual](./docs/current-status.md)** - Gap analysis: implementado vs planejado (30% completo)
+- **[Roadmap](./docs/roadmap.md)** - Cronograma de 6 meses de implementação
+- **[Stack Técnica](./docs/technical-stack.md)** - Tecnologias, integrações e arquitetura
+
+> **Nota:** Este README fornece uma visão geral. Para especificações completas, arquitetura de produto e planos de implementação, consulte a documentação em `/docs`.
 
 ---
 
